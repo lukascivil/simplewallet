@@ -7,6 +7,8 @@ import { ROUTES } from "./app.routes";
 import { HeaderComponent } from './shared/components/header/header.component';
 import { PanelComponent } from './pages/panel/panel.component';
 import { HomeComponent } from './pages/panel/home/home.component';
+import { MarketService } from './shared/providers/market.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -17,9 +19,10 @@ import { HomeComponent } from './pages/panel/home/home.component';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [MarketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
