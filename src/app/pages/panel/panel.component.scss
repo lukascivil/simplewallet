@@ -1,0 +1,19 @@
+@import "../../../styles.scss";
+
+// styles for medium screens and down
+@media #{$medium-and-down} {
+    main {
+        padding-left: 0px;
+    }
+}
+
+// styles for large screens and up
+@media #{$large-and-up} {
+    main {
+        padding-left: 300px;
+        .container {
+            width: 100%
+        }
+    }
+}
+
