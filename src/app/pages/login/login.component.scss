@@ -1,0 +1,17 @@
+@import "../../../styles.scss";
+
+.no-uppercase {
+    text-transform: none !important;
+}
+
+.container {
+    padding-top: 10px;
+}
+// On Desktop
+@media #{$large-and-up} {
+    .card {
+        width: 40%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
