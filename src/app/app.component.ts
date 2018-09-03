@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private elementRef: ElementRef) {
+    this.routeEvent(this.router);
+  }
+
+  routeEvent(router: Router) {
+    router.events.subscribe(e => {
+      if (e instanceof NavigationEnd) {
+        if (e.url.includes("login")) // Login backgroundcolor
+          this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#2a6242';
+        else // panel backgroundcolor
+          this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#e8f5e9';
+      }
+    });
+  }
 }
