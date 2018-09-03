@@ -1,0 +1,14 @@
+@import "../../../../styles.scss";
+
+
+.brand-logo img {
+    max-height: 50px;
+    padding-top: 2px;
+}
+
+// styles for large screens and up
+@media #{$large-and-up} {
+    .brand-logo img {
+        padding-left: 300px;
+    }
+}
