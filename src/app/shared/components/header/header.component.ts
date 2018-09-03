@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as M from 'materialize-css';
 
 @Component({
@@ -7,6 +7,8 @@ import * as M from 'materialize-css';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @Input() brita: number;
+  @Input() bitcoin: number;
 
   constructor() { }
 
