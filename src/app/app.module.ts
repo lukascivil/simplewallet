@@ -9,6 +9,8 @@ import { PanelComponent } from './pages/panel/panel.component';
 import { HomeComponent } from './pages/panel/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from './shared/providers/user.service';
+import { AuthenticationService } from './shared/providers/authentication.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [AuthenticationService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
