@@ -4,10 +4,11 @@ import { HomeComponent } from "./pages/panel/home/home.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { registerComponent } from "./pages/register/register.component";
 import { Error404Component } from "./pages/error404/error404.component";
+import { AuthGuard } from "./guards/auth.guard";
 
 export const ROUTES: Routes = [
   {
-    path: "", component: PanelComponent,
+    path: "", component: PanelComponent, canActivate: [AuthGuard],
     children: [
       { path: "", component: HomeComponent }
     ]
