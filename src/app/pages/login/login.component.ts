@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as M from 'materialize-css';
 import { AuthenticationService } from '../../../app/shared/providers/authentication.service';
 
 @Component({
@@ -45,11 +44,6 @@ export class LoginComponent implements OnInit {
       })
       .catch(result => {
       })
-  }
-
-  ngAfterContentInit() {
-    // Auto Init all Materialize Components
-    M.AutoInit();
   }
 
 }
