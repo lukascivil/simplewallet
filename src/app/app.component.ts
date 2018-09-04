@@ -15,7 +15,7 @@ export class AppComponent {
   routeEvent(router: Router) {
     router.events.subscribe(e => {
       if (e instanceof NavigationEnd) {
-        if (e.url.includes("login")) // Login backgroundcolor
+        if (e.url.includes("login") || e.url.includes("register")) // Login or Register backgroundcolor
           this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#2a6242';
         else // panel backgroundcolor
           this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#e8f5e9';
