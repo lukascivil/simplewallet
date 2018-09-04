@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  // Check if the input is valid
+  // Check if the inputs are valid
   isValidInput(name): string {
     if (this.loginForm.get(name).invalid && this.loginForm.get(name).dirty)
       return "invalid";
