@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/panel/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from './shared/providers/authentication.service';
+import { registerComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AuthenticationService } from './shared/providers/authentication.service
     HeaderComponent,
     PanelComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    registerComponent
   ],
   imports: [
     BrowserModule,
