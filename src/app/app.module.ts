@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from './shared/providers/authentication.service';
 import { registerComponent } from './pages/register/register.component';
 import { UserService } from './shared/providers/user.service';
+import { Error404Component } from './pages/error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UserService } from './shared/providers/user.service';
     PanelComponent,
     HomeComponent,
     LoginComponent,
-    registerComponent
+    registerComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
