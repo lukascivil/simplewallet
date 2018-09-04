@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 })
 export class AppComponent {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private elementRef: ElementRef) {
+  constructor(private router: Router, private elementRef: ElementRef) {
     this.routeEvent(this.router);
   }
 
