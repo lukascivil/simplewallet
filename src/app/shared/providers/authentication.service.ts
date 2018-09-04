@@ -9,8 +9,6 @@ export class AuthenticationService {
 
   login(username: string, password: string) {
     var promise = new Promise((resolve, reject) => {
-      // Simulate authentication
-      resolve(true);
     });
     return promise;
   }
