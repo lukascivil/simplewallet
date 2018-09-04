@@ -7,19 +7,25 @@ import { ROUTES } from "./app.routes";
 import { HeaderComponent } from './shared/components/header/header.component';
 import { PanelComponent } from './pages/panel/panel.component';
 import { HomeComponent } from './pages/panel/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthenticationService } from './shared/providers/authentication.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     PanelComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

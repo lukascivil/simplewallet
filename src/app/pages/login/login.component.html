@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <!-- Stone Logo -->
+    <div class="col s12 m12 center">
+      <img src="assets/logostonewhite.png" alt="">
+      <h6 class="white-text">SimpleWallet</h6>
+    </div>
+    <!-- Sign In -->
+    <div class="col s12 m12">
+      <div class="card">
+        <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+          <div class="card-content ">
+            <span class="card-title">Sign In</span>
+            <p>Enter your credentials to Sign In</p>
+            <div class="row nomarginbotton">
+              <div class="input-field col s12">
+                <input id="username" formControlName="username" [ngClass]="isValidInput('username')" type="text">
+                <label for="username">Name</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="password" formControlName="password" [ngClass]="isValidInput('password')" type="password">
+                <label for="password">Password</label>
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <div class="row nomarginbotton">
+              <div class="col s9"><a [routerLink]="['/register']">Not have an account yet? <strong>Create an account
+                  </strong></a></div>
+              <div class="col s3">
+                <button class="btn waves-effect waves-light right" type="submit" name="action">Sign In</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

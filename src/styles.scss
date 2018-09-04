@@ -4,10 +4,13 @@ $primary-color: #2a6242 !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
 $primary-color-dark: darken($primary-color, 15%) !default;
 $secondary-color: #91c73e !default;
-$success-color: color("green", "base") !default;
-$error-color: color("red", "base") !default;
+// $success-color: color("green", "base") !default;
+// $error-color: color("red", "base") !default;
 $link-color: color("green", "darken-1") !default;
 
+.nomarginbotton {
+  margin-bottom: 0 !important;
+}
 
 @import "./node_modules/materialize-css/sass/components/color-variables";
 @import "./node_modules/materialize-css/sass/components/_variables";
