@@ -13,6 +13,8 @@ import { AuthenticationService } from './shared/providers/authentication.service
 import { registerComponent } from './pages/register/register.component';
 import { UserService } from './shared/providers/user.service';
 import { Error404Component } from './pages/error404/error404.component';
+import { MarketService } from './shared/providers/market.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,10 @@ import { Error404Component } from './pages/error404/error404.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [AuthenticationService, UserService],
+  providers: [AuthenticationService, UserService, MarketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
