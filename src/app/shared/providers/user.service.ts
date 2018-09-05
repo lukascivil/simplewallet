@@ -31,6 +31,11 @@ export class UserService {
 		return promise;
 	}
 
+	// Get user data
+	getUser(): User {
+		return JSON.parse(localStorage.getItem("user"));
+	}
+
 	// Generates a unique hash code for the user id
 	private hashCode() {
 		return Math.random().toString(36).substr(2, 9);
