@@ -36,10 +36,12 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Take the money, bitcoin, brita that the user has in the database
-    this.brluser = this.userService.getUser().money_brl;
-    this.bitcoinuser = this.userService.getUser().cryptocoins.bitcoin;
-    this.britauser = this.userService.getUser().cryptocoins.brita;
+    // Get current user
+    let user = this.userService.getUser();
+    // Take the money (brl), bitcoin, brita that the user has in the database
+    this.brluser = user.money_brl;
+    this.bitcoinuser = user.cryptocoins.bitcoin;
+    this.britauser = user.cryptocoins.brita;
 
     // Takes the current bitcoin value that is provided by API
     this.market.bitcoincurrent.subscribe(message => {
