@@ -12,5 +12,10 @@ $link-color: color("green", "darken-1") !default;
   margin-bottom: 0 !important;
 }
 
+.brlmoney {
+  font-size: 22px;
+  font-weight: bold;
+}
+
 @import "./node_modules/materialize-css/sass/components/color-variables";
 @import "./node_modules/materialize-css/sass/components/_variables";
