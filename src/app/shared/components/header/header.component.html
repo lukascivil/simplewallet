@@ -1,50 +1,83 @@
 <header>
+  <!-- Dropdown Structure -->
+  <ul id="userdropdown" class="dropdown-content">
+    <li><a [routerLink]="['/login']">Sair</a></li>
+  </ul>
+
   <!-- Navbar -->
   <nav>
     <div class="nav-wrapper">
-      <!-- Logo -->
-      <a href="#" class="brand-logo center"><img src="../../../../assets/logostonewhite.png" alt=""></a>
+      <!-- Product Logo -->
+      <a href="#" class="brand-logo center">Simple Wallet</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li class="max">
+          <a>
+            <span class="top"> Market BRL/BTC</span>
+            <span> Buy {{bitcoinsell | currency: 'BRL': true}} Sell {{bitcoinbuy| currency: 'BRL':
+              true}}</span>
+          </a>
+        </li>
+        <!-- User Dropdown Trigger -->
+        <li>
+          <a class="dropdown-trigger" href="#!" data-target="userdropdown">Lucas Cordeiro da Silva <i class="fa fa-user-circle-o fa-1x"
+              aria-hidden="true"></i></a>
+        </li>
+      </ul>
       <!-- SideNav hamburger Icon -->
       <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></a>
     </div>
   </nav>
+
   <!-- SideNav-->
   <ul id="slide-out" class="sidenav sidenav-fixed">
-    <li>
-      <div class="center">
-        <h4>Simple Wallet</h4>
-      </div>
-      <a class="subheader">MARKET</a>
-      <div class="row valign-wrapper nomarginbotton">
-        <div class="col s6 center">
-          <div class="valign-wrapper">
-            <i class="fa fa-btc fa-2x" aria-hidden="true"></i> <i class="fa fa-arrow-right" aria-hidden="true"></i> <strong
-              class="brlmoney"> BRL </strong>
-          </div>
-        </div>
-        <div class="col s6">
-          Buy: {{bitcoin?.buy | currency: 'BRL': true}} Sell: {{bitcoin?.sell | currency: 'BRL': true}}
-        </div>
 
+    <li>
+      <!-- Product Logo -->
+      <div class="row valign-wrapper nomarginbotton">
+        <div class="col s12 m12 center-align">
+          <img class="companylogo" src="../../../../assets/logostonegreen.png" alt="">
+        </div>
       </div>
+
+      <div class="divider"></div>
+
+      <!-- Market -->
+      <a class="subheader hide-on-med-and-down">MARKET BRL/BTC</a>
+      <div class="row nomarginbotton hide-on-med-and-down">
+        <div class="col s6 currencyvalueup">
+          <div class="center">Buy</div>
+          <div class="center">{{bitcoinsell | currency: 'BRL': true}}</div>
+        </div>
+        <div class="col s6 currencyvalueup">
+          <div class="center">Sell</div>
+          <div class="center">{{bitcoinbuy | currency: 'BRL': true}}</div>
+        </div>
+      </div>
+
+      <!-- Accounting Balance -->
       <a class="subheader">ACCOUNTING BALANCE</a>
       <div class="row nomarginbotton">
         <div class="col s6 center"><strong class="brlmoney"> BRL</strong></div>
-        <div class="col s6 right">R$ 100.000,00</div>
+        <div class="col s6 center currencyvalueup">{{brluser | currency: 'BRL': true }}</div>
       </div>
       <div class="row nomarginbotton">
-        <div class="col s6 center"><i class="fa fa-btc fa-2x" aria-hidden="true"></i></div>
-        <div class="col s6 right">R$ 100.000,00</div>
+        <div class="col s6 center"><i class="fa fa-btc fa-3x amber-text" aria-hidden="true"></i></div>
+        <div class="col s6 center currencyvalueup">{{bitcoinuser}}</div>
       </div>
       <div class="row nomarginbotton">
-        <div class="col s6 center"><i class="fa fa-eercast fa-2x" aria-hidden="true"></i></div>
-        <div class="col s6 right">R$ 100.000,00</div>
+        <div class="col s6 center"><i class="fa fa-eercast fa-2x purple-text" aria-hidden="true"></i></div>
+        <div class="col s6 center currencyvalueup">{{britauser}}</div>
       </div>
     </li>
+
     <li>
       <div class="divider"></div>
     </li>
+
     <!-- SideNav Menu  -->
-    <li><a class="waves-effect waves-green sidenav-close" [routerLink]="['/']"><i class="fa fa-tachometer fa-2x" aria-hidden="true"></i>DashBoard</a></li>
+    <li>
+      <a class="waves-effect waves-green sidenav-close" [routerLink]="['/']"><i class="fa fa-tachometer fa-2x"
+          aria-hidden="true"></i>DashBoard</a>
+    </li>
   </ul>
 </header>
