@@ -23,5 +23,10 @@ $link-color: color("green", "darken-1") !default;
   font-size: 19px;
 }
 
+// Sidenav menu hover
+ul.sidenav li a:hover {
+  background-color: lighten($secondary-color, 40%) !important;
+}
+
 @import "./node_modules/materialize-css/sass/components/color-variables";
 @import "./node_modules/materialize-css/sass/components/_variables";
