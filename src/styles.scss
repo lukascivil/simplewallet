@@ -18,5 +18,10 @@ $link-color: color("green", "darken-1") !default;
   font-weight: bold;
 }
 
+// Style for currencies value
+.currencyvalueup {
+  font-size: 19px;
+}
+
 @import "./node_modules/materialize-css/sass/components/color-variables";
 @import "./node_modules/materialize-css/sass/components/_variables";
