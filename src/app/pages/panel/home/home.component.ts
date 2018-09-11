@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit {
         labels: ["Real", "Bitcoin", "Brita"],
         datasets: [{
           label: "Population (millions)",
-          backgroundColor: ["#009b3a", "#ffba15", "#663300"],
+          backgroundColor: ["#009b3a", "#ffba15", "#9c27b0"],
           data: [0, 0, 0]
         }]
       },
