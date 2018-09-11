@@ -1,22 +1,21 @@
 @import "../../../../styles.scss";
 
-
-.brand-logo img {
-    max-height: 50px;
-    padding-top: 2px;
-}
-
 // styles for large screens and up
 @media #{$large-and-up} {
-    .brand-logo img {
+    .brand-logo {
         padding-left: 300px;
     }
 }
 
 .brlmoney {
     font-size: 22px;
+.sidenav .companylogo {
+    padding-top: 6px;
 }
 
 .nomarginbotton {
     margin-bottom: 0;
+#nav-mobile .top {
+    position: absolute;
+    top: -21px;
 }
