@@ -8,6 +8,7 @@ $secondary-color: #91c73e !default;
 // $error-color: color("red", "base") !default;
 $link-color: color("green", "darken-1") !default;
 
+// For card without bottom margin
 .nomarginbotton {
   margin-bottom: 0 !important;
 }
@@ -15,6 +16,16 @@ $link-color: color("green", "darken-1") !default;
 .brlmoney {
   font-size: 22px;
   font-weight: bold;
+}
+
+// Style for currencies value
+.currencyvalueup {
+  font-size: 19px;
+}
+
+// Sidenav menu hover
+ul.sidenav li a:hover {
+  background-color: lighten($secondary-color, 40%) !important;
 }
 
 @import "./node_modules/materialize-css/sass/components/color-variables";
