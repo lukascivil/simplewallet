@@ -10,11 +10,11 @@
     </div>
     <!-- Buy Operation -->
     <div id="buy">
-      <app-order type="buy" [currencies]="currencies" [first]='operationtype.buy.first' [second]='operationtype.buy.second'></app-order>
+      <app-order type="buy" [order]="order" [currencies]="currencies" [first]='operationtype.buy.first' [second]='operationtype.buy.second'></app-order>
     </div>
     <!-- Sell Operation -->
     <div id="sell">
-      <app-order type="sell" [currencies]="currencies" [first]='operationtype.sell.first' [second]='operationtype.sell.second'></app-order>
+      <app-order type="sell" [order]="order" [currencies]="currencies" [first]='operationtype.sell.first' [second]='operationtype.sell.second'></app-order>
     </div>
   </div>
 </div>

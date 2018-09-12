@@ -11,9 +11,19 @@ export class OrderComponent implements OnInit {
   @Input() first;
   @Input() second;
   @Input() currencies;
+  @Input() order;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  // Add class to selected currency 
+  onCurrencyClick(what: string, currency: string) {
+    if (what == "first") {
+      this.order.firstcurrency = currency;
+    } else {
+      this.order.secondcurrency = currency;
+    }
   }
 }

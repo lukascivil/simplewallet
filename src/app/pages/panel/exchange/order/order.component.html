@@ -5,7 +5,7 @@
     <div class="row nomarginbotton">
       <ng-container *ngFor="let currency of first">
         <div class="col s5 m3 currencymethod">
-          <div class="card-panel hoverable">
+          <div class="card-panel hoverable" [ngClass]="{'selected': order.firstcurrency == currency}" (click)="onCurrencyClick('first', currency)">
             <div [innerHTML]="currencies[currency].icon"></div> <span class=""></span>
           </div>
         </div>
@@ -19,7 +19,7 @@
     <div class="row nomarginbotton">
       <ng-container *ngFor="let currency of second">
         <div class="col s5 m3 currencymethod">
-          <div class="card-panel hoverable">
+          <div class="card-panel hoverable" [ngClass]="{'selected': order.firstcurrency == currency}" (click)="onCurrencyClick('first', currency)">
             <div [innerHTML]="currencies[currency].icon"></div><span class=""></span>
           </div>
         </div>
