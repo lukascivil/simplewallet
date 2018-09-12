@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as M from 'materialize-css';
 import { Order } from '../../../shared/models/order.model';
+import { MarketService } from '../../../shared/providers/market.service';
+import { UserService } from '../../../shared/providers/user.service';
 
 @Component({
   selector: 'app-exchange',
@@ -22,16 +24,44 @@ export class ExchangeComponent implements OnInit {
     sell: { first: ["bitcoin", "brita"], second: ["real"] }
   };
 
+  // Brita, provided by the API
+  britabuy = undefined;
+  // Bitcoin, provided by the API
+  bitcoinbuy = undefined;
+  // User Real
+  brluser = undefined;
+
   // initiates new order Object
   order = new Order();
 
   // Current tab
   selectedtab: string = ""
 
-  constructor() {
+  constructor(private market: MarketService, private userService: UserService) {
   }
 
   ngOnInit() {
+    // Get current user
+    this.userService.usercurrent.subscribe(user => {
+      // Take the money (brl), that the user has in the database
+      this.brluser = user.money_brl;
+    });
+
+    // Takes the current bitcoin value that is provided by API
+    this.market.bitcoincurrent.subscribe(message => {
+      if (message.buy !== undefined) {
+        // Calculate the value of the bitcoin in brl
+        this.bitcoinbuy = Number(message.buy);
+      }
+    });
+
+    // Takes the current britas value that is provided by API
+    this.market.britacurrent.subscribe(message => {
+      if (message.cotacaoCompra !== undefined) {
+        // Calculate the value of the britas in brl
+        this.britabuy = message.cotacaoCompra;
+      }
+    });
   }
 
   ngAfterContentInit() {

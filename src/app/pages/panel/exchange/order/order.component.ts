@@ -12,6 +12,8 @@ export class OrderComponent implements OnInit {
   @Input() second;
   @Input() currencies;
   @Input() order;
+  @Input() britabuy;
+  @Input() bitcoinbuy;
 
   constructor() { }
 
@@ -22,6 +24,10 @@ export class OrderComponent implements OnInit {
   onCurrencyClick(what: string, currency: string) {
     if (what == "first") {
       this.order.firstcurrency = currency;
+      if (currency == "brita")
+        this.order.setCurrentbase(this.britabuy);
+      else if (currency == "bitcoin")
+        this.order.setCurrentbase(this.bitcoinbuy);
     } else {
       this.order.secondcurrency = currency;
     }

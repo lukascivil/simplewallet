@@ -7,4 +7,10 @@ export class Order {
   currentbase: number;
   total: number;
   date: string;
+
+  setCurrentbase(value: number) {
+    this.currentbase = value;
+    if (this.amount != undefined)
+      this.total = this.amount * this.currentbase;
+  }
 }
