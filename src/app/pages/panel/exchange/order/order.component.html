@@ -26,4 +26,28 @@
       </ng-container>
     </div>
   </div>
+  <div class="divider"></div>
+  <!-- Amount of currency to buy -->
+  <div class="section">
+    <div class="row valign-wrapper nomarginbotton">
+      <div class="col s6">
+        <h5>Amount</h5>
+      </div>
+    </div>
+    <div class="row valign-wrapper nomarginbotton">
+      <div class="input-field col s5">
+        <input id="amount" type="number" maxlength="20" (keyup)="onAmountInputKeyup($event.target.value)" [value]="order.getAmount()"
+          [disabled]="!order.secondcurrency">
+        <label class="active" for="amount">{{currencies[order.firstcurrency]?.label}}</label>
+      </div>
+      <div class="col s2 center">
+        <i class="fa fa-exchange fa-2x" aria-hidden="true"></i>
+      </div>
+      <div class="input-field col s5">
+        <input id="total" type="number" maxlength="20" (keyup)="onTotalInputKeyup($event.target.value)" [value]="order.getTotal()"
+          [disabled]="!order.secondcurrency">
+        <label class="active" for="total">BRL</label>
+      </div>
+    </div>
+  </div>
 </div>

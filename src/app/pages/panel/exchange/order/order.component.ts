@@ -32,4 +32,13 @@ export class OrderComponent implements OnInit {
       this.order.secondcurrency = currency;
     }
   }
+
+  onAmountInputKeyup(value) {
+    this.order.setAmount(Number(value));
+  }
+
+  onTotalInputKeyup(value) {
+    this.order.setTotal(Number(value));
+  }
+
 }
