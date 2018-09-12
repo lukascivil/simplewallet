@@ -13,10 +13,19 @@ export class Order {
     if (this.currentbase != undefined)
       this.total = this.amount * this.currentbase;
   }
+
+  getAmount(): number {
+    return this.amount
+  }
+
   setCurrentbase(value: number) {
     this.currentbase = value;
     if (this.amount != undefined)
       this.total = this.amount * this.currentbase;
+  }
+
+  getCurrentbase(): number {
+    return this.currentbase
   }
 
   setTotal(value: number) {
