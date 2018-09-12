@@ -33,6 +33,12 @@
       <div class="col s6">
         <h5>Amount</h5>
       </div>
+      <div class="col s6">
+        <h6 class="right" *ngIf="brlusermax == '100%'">(Value above the allowed*)</h6>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="determinate" [ngClass]="{'red': brlusermax == '100%'}" [ngStyle]="{'width': brlusermax}"></div>
     </div>
     <div class="row valign-wrapper nomarginbotton">
       <div class="input-field col s5">

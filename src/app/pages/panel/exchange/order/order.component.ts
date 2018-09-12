@@ -14,10 +14,18 @@ export class OrderComponent implements OnInit {
   @Input() order;
   @Input() britabuy;
   @Input() bitcoinbuy;
+  @Input() brluser;
+
+  brlusermax: string = "0%";
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  updateProgressMax() {
+    let ruleofthree = (this.order.getTotal() * 100) / this.brluser;
+    this.brlusermax = String(ruleofthree > 100 ? 100 : ruleofthree) + "%";
   }
 
   // Add class to selected currency 
@@ -35,10 +43,12 @@ export class OrderComponent implements OnInit {
 
   onAmountInputKeyup(value) {
     this.order.setAmount(Number(value));
+    this.updateProgressMax();
   }
 
   onTotalInputKeyup(value) {
     this.order.setTotal(Number(value));
+    this.updateProgressMax();
   }
 
 }
