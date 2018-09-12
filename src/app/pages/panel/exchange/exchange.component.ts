@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as M from 'materialize-css';
+import { Order } from '../../../shared/models/order.model';
 
 @Component({
   selector: 'app-exchange',
@@ -20,6 +21,9 @@ export class ExchangeComponent implements OnInit {
     buy: { first: ["bitcoin", "brita"], second: ["real"] },
     sell: { first: ["bitcoin", "brita"], second: ["real"] }
   };
+
+  // initiates new order Object
+  order = new Order();
 
   // Current tab
   selectedtab: string = ""
