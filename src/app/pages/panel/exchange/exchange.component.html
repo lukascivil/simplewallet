@@ -20,5 +20,7 @@
     </div>
   </div>
   <!-- Order Summary -->
-  <app-ordersummary></app-ordersummary>
+  <div class="col s12 m5">
+    <app-ordersummary [order]="order" [currencies]="currencies"></app-ordersummary>
+  </div>
 </div>
