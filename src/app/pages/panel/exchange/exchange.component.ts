@@ -84,4 +84,9 @@ export class ExchangeComponent implements OnInit {
     this.resetOrder();
   }
 
+  onSubmitOrderClick() {
+    // Set the order date
+    this.order.date = new Date().toLocaleString()
+  }
+
 }

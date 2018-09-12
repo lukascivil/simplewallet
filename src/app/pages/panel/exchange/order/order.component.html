@@ -57,3 +57,12 @@
     </div>
   </div>
 </div>
+<!-- Button to confirm the transaction -->
+<div class="card-action">
+  <div class="row nomarginbotton">
+    <button class="btn waves-effect waves-light btn-large col s12 m12" [ngClass]="{'disabled': !order.getAmount() || brlusermax == '100%'}"
+      (click)="emitonSubmitOrderClickEvent()" name="action"> <i class="fa fa-check-circle" aria-hidden="true"></i> Buy
+      {{order.firstcurrency}}
+    </button>
+  </div>
+</div>

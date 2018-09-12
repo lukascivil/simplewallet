@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-order',
@@ -15,6 +15,7 @@ export class OrderComponent implements OnInit {
   @Input() britabuy;
   @Input() bitcoinbuy;
   @Input() brluser;
+  @Output() onSubmitOrderClick = new EventEmitter();
 
   brlusermax: string = "0%";
 
@@ -49,6 +50,10 @@ export class OrderComponent implements OnInit {
   onTotalInputKeyup(value) {
     this.order.setTotal(Number(value));
     this.updateProgressMax();
+  }
+
+  emitonSubmitOrderClickEvent() {
+    this.onSubmitOrderClick.emit();
   }
 
 }
