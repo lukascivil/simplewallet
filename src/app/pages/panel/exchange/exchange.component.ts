@@ -38,6 +38,9 @@ export class ExchangeComponent implements OnInit {
   selectedtab: string = ""
 
   constructor(private market: MarketService, private userService: UserService) {
+    // Set Default Operation type
+    this.selectedtab = "buy";
+    this.order.type = "buy";
   }
 
   ngOnInit() {
