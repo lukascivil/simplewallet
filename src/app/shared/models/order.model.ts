@@ -3,14 +3,33 @@ export class Order {
   type: string;
   firstcurrency: string;
   secondcurrency: string;
-  amount: number;
-  currentbase: number;
-  total: number;
+  private amount: number;
+  private currentbase: number;
+  private total: number;
   date: string;
 
+  setAmount(value: number) {
+    this.amount = value;
+    if (this.currentbase != undefined)
+      this.total = this.amount * this.currentbase;
+  }
   setCurrentbase(value: number) {
     this.currentbase = value;
     if (this.amount != undefined)
       this.total = this.amount * this.currentbase;
   }
+
+  setTotal(value: number) {
+    this.total = value
+    if (this.currentbase) {
+      this.amount = this.total / this.currentbase;
+    } else {
+      throw "Error on currentbase value";
+    }
+  }
+
+  getTotal(): number {
+    return this.total;
+  }
+
 }
