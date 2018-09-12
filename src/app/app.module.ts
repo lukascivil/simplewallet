@@ -16,6 +16,7 @@ import { Error404Component } from './pages/error404/error404.component';
 import { MarketService } from './shared/providers/market.service';
 import { HttpModule } from '@angular/http';
 import { ExchangeComponent } from './pages/panel/exchange/exchange.component';
+import { OrderComponent } from './pages/panel/exchange/order/order.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ExchangeComponent } from './pages/panel/exchange/exchange.component';
     LoginComponent,
     registerComponent,
     Error404Component,
-    ExchangeComponent
+    ExchangeComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
