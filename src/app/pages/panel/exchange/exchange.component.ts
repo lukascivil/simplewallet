@@ -8,6 +8,19 @@ import * as M from 'materialize-css';
 })
 export class ExchangeComponent implements OnInit {
 
+  // Currencies meta
+  currencies = {
+    bitcoin: { label: "BTC", icon: '<i class="fa fa-btc fa-3x amber-text" aria-hidden="true"></i>' },
+    brita: { label: "BTA", icon: '<i class="fa fa-eercast fa-3x purple-text" aria-hidden="true"></i>' },
+    real: { label: "BRL", icon: '<div class="brlmoney"> BRL</div>' }
+  };
+
+  // Sets the type of operation, first -> Currency to buy, second -> Payment Currency
+  operationtype = {
+    buy: { first: ["bitcoin", "brita"], second: ["real"] },
+    sell: { first: ["bitcoin", "brita"], second: ["real"] }
+  };
+
   // Current tab
   selectedtab: string = ""
 

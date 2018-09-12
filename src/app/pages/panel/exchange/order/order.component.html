@@ -1,0 +1,29 @@
+<div class="card-content">
+  <!-- Currencies to buy -->
+  <div class="section">
+    <h5>Currency</h5>
+    <div class="row nomarginbotton">
+      <ng-container *ngFor="let currency of first">
+        <div class="col s5 m3 currencymethod">
+          <div class="card-panel hoverable">
+            <div [innerHTML]="currencies[currency].icon"></div> <span class=""></span>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <!-- Payment Methods -->
+  <div class="section">
+    <h5>Payment Method</h5>
+    <div class="row nomarginbotton">
+      <ng-container *ngFor="let currency of second">
+        <div class="col s5 m3 currencymethod">
+          <div class="card-panel hoverable">
+            <div [innerHTML]="currencies[currency].icon"></div><span class=""></span>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
