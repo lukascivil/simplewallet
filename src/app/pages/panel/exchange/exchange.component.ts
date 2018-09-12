@@ -8,6 +8,9 @@ import * as M from 'materialize-css';
 })
 export class ExchangeComponent implements OnInit {
 
+  // Current tab
+  selectedtab: string = ""
+
   constructor() {
   }
 
@@ -17,6 +20,10 @@ export class ExchangeComponent implements OnInit {
   ngAfterContentInit() {
     // Auto Init all Materialize Components
     M.AutoInit();
+  }
+
+  onTabClick(value) {
+    this.selectedtab = value;
   }
 
 }
