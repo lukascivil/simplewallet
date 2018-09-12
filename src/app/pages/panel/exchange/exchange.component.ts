@@ -69,8 +69,16 @@ export class ExchangeComponent implements OnInit {
     M.AutoInit();
   }
 
+  resetOrder() {
+    // Reset the order
+    this.order = new Order();
+    // Set Default Operation type
+    this.order.type = this.selectedtab;
+  }
+
   onTabClick(value) {
     this.selectedtab = value;
+    this.resetOrder();
   }
 
 }
