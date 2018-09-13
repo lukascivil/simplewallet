@@ -8,6 +8,14 @@ export class Order {
   private total: number;
   date: string;
 
+  constructor() {
+    this.id = this.ID();
+  }
+
+  private ID(): string {
+    return Math.random().toString(36).substr(2, 9);
+  }
+
   setAmount(value: number) {
     this.amount = value;
     if (this.currentbase != undefined)
