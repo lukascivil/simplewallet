@@ -26,10 +26,9 @@ export class ExchangeComponent implements OnInit {
     sell: { first: ["bitcoin", "brita"], second: ["real"] }
   };
 
-  // Brita, provided by the API
-  britabuy = undefined;
-  // Bitcoin, provided by the API
-  bitcoinbuy = undefined;
+  // Value of currencies on the market provided by the API
+  market = { bitcoin: {}, brita: {} }
+
   // User Real
   brluser = undefined;
   // User Currencies
@@ -41,7 +40,7 @@ export class ExchangeComponent implements OnInit {
   // Current tab
   selectedtab: string = ""
 
-  constructor(private market: MarketService, private userService: UserService, private exchangeService: ExchangeService, private modalService: ModalService) {
+  constructor(private marketService: MarketService, private userService: UserService, private exchangeService: ExchangeService, private modalService: ModalService) {
     // Set Default Operation type
     this.selectedtab = "buy";
     this.order.type = "buy";
@@ -56,19 +55,15 @@ export class ExchangeComponent implements OnInit {
     });
 
     // Takes the current bitcoin value that is provided by API
-    this.market.bitcoincurrent.subscribe(message => {
-      if (message.buy !== undefined) {
-        // Calculate the value of the bitcoin in brl
-        this.bitcoinbuy = Number(message.buy);
-      }
+    this.marketService.bitcoincurrent.subscribe(message => {
+      this.market.bitcoin["buy"] = Number(message.buy)
+      this.market.bitcoin["sell"] = Number(message.sell)
     });
 
     // Takes the current britas value that is provided by API
-    this.market.britacurrent.subscribe(message => {
-      if (message.cotacaoCompra !== undefined) {
-        // Calculate the value of the britas in brl
-        this.britabuy = message.cotacaoCompra;
-      }
+    this.marketService.britacurrent.subscribe(message => {
+      this.market.brita["buy"] = Number(message.cotacaoCompra)
+      this.market.brita["sell"] = Number(message.cotacaoVenda)
     });
   }
 

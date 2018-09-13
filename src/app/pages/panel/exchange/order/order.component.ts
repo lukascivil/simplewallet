@@ -12,8 +12,7 @@ export class OrderComponent implements OnInit {
   @Input() second;
   @Input() currencies;
   @Input() order;
-  @Input() britabuy;
-  @Input() bitcoinbuy;
+  @Input() market;
   @Input() brluser;
   @Input() currenciesuser;
   @Output() onSubmitOrderClick = new EventEmitter();
@@ -42,15 +41,29 @@ export class OrderComponent implements OnInit {
     return String(ruleofthree > 100 ? 100 : ruleofthree) + "%";
   }
 
-  // Add class to selected currency 
+  // Add class to selected currency and set the currentbase
   onCurrencyClick(what: string, currency: string) {
     if (what == "first") {
+      let base;
+
+      // Set firstcurrency name
       this.order.firstcurrency = currency;
-      if (currency == "brita")
-        this.order.setCurrentbase(this.britabuy);
-      else if (currency == "bitcoin")
-        this.order.setCurrentbase(this.bitcoinbuy);
+
+      if (currency == "brita") {
+        if (this.order.type == "buy")
+          base = this.market.brita.sell;
+        else
+          base = this.market.brita.buy;
+      } else if (currency == "bitcoin") {
+        if (this.order.type == "buy")
+          base = this.market.bitcoin.sell;
+        else
+          base = this.market.bitcoin.buy;
+      }
+
+      this.order.setCurrentbase(base);
     } else {
+      // Set secondcurrency name
       this.order.secondcurrency = currency;
     }
   }
