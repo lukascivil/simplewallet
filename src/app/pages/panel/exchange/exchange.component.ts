@@ -4,6 +4,7 @@ import { Order } from '../../../shared/models/order.model';
 import { MarketService } from '../../../shared/providers/market.service';
 import { UserService } from '../../../shared/providers/user.service';
 import { ExchangeService } from './exchange.service';
+import { ModalService } from '../../../shared/components/modal/modal.service';
 
 @Component({
   selector: 'app-exchange',
@@ -38,7 +39,7 @@ export class ExchangeComponent implements OnInit {
   // Current tab
   selectedtab: string = ""
 
-  constructor(private market: MarketService, private userService: UserService, private exchangeService: ExchangeService) {
+  constructor(private market: MarketService, private userService: UserService, private exchangeService: ExchangeService, private modalService: ModalService) {
     // Set Default Operation type
     this.selectedtab = "buy";
     this.order.type = "buy";
@@ -94,10 +95,14 @@ export class ExchangeComponent implements OnInit {
       // Send the order to make the transaction
       this.exchangeService.sendOrder(this.order)
         .then(() => { // Success
+          this.modalService.open({ header: "Exchange", content: "Successful operation!" });
           this.resetOrder();
         })
         .catch(() => { // Error
+          this.modalService.open({ header: "Exchange", content: "Error: while performing operation! Please Try again later" });
         })
+    } else {
+      this.modalService.open({ header: "Exchange", content: "Error: Invalid Order!" });
     }
   }
 
