@@ -1,0 +1,6 @@
+@import "../../../../styles.scss";
+
+// style for large screens and up
+@media #{$large-and-up} {
+  .modal { width: 400px !important; }
+}
