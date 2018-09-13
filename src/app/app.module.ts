@@ -19,6 +19,8 @@ import { ExchangeComponent } from './pages/panel/exchange/exchange.component';
 import { OrderComponent } from './pages/panel/exchange/order/order.component';
 import { OrdersummaryComponent } from './pages/panel/exchange/ordersummary/ordersummary.component';
 import { ExchangeService } from './pages/panel/exchange/exchange.service';
+import { ModalService } from './shared/components/modal/modal.service';
+import { ModalComponent } from './shared/components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { ExchangeService } from './pages/panel/exchange/exchange.service';
     Error404Component,
     ExchangeComponent,
     OrderComponent,
-    OrdersummaryComponent
+    OrdersummaryComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,7 @@ import { ExchangeService } from './pages/panel/exchange/exchange.service';
     HttpModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [AuthenticationService, UserService, MarketService, ExchangeService],
+  providers: [AuthenticationService, UserService, MarketService, ExchangeService, ModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
