@@ -41,4 +41,12 @@ export class Order {
     return this.total;
   }
 
+  isValid(): boolean {
+    if (this.id && this.type && this.firstcurrency &&
+      this.secondcurrency && this.secondcurrency && this.amount &&
+      this.currentbase && this.total && this.date) {
+      return true;
+    }
+    return false;
+  }
 }
