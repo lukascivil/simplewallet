@@ -27,31 +27,38 @@ export class ExchangeService {
 
   // Make a transaction with the order
   private tryMakeTransaction(order: Order, user: User): boolean {
-    if (order.type == "buy") {
-      if ((order.firstcurrency == "bitcoin" || order.firstcurrency == "brita") && order.secondcurrency == "real") {
-        // Current variables holds the value of the current money and currency amount in the wallet for the calculation
-        let currentmoney = user.money_brl
-        let currentamount = user.cryptocoins[order.firstcurrency]
+    // Check if currencies are valid
+    if ((order.firstcurrency == "bitcoin" || order.firstcurrency == "brita") && order.secondcurrency == "real") {
+      // Current variables holds the value of the current money and currency amount in the wallet for the calculation
+      let currentmoney = user.money_brl
+      let currentamount = user.cryptocoins[order.firstcurrency]
 
-        // Calculate the current value with the operation
+      // Calculate the current value with the operation type: buy or sell
+      if (order.type == "buy") {
         currentmoney -= order.getTotal();
         currentamount += order.getAmount();
-
-        // If current is less than 0, cancel the operation
-        if (currentmoney < 0)
-          return false;
-
-        // Make the operation
-        user.money_brl = currentmoney
-        user.cryptocoins[order.firstcurrency] = currentamount
-
-        // Add transaction to history
-        user.transactions.push(order);
-
-        // Update user data
-        this.userService.updateUser(user)
-        return true;
+      } else if (order.type == "sell") {
+        currentmoney += order.getTotal();
+        currentamount -= order.getAmount();
+      } else {
+        // without the defined type {buy, sell}, cancel the operation
+        return false;
       }
+
+      // If current is less than 0, cancel the operation
+      if (currentmoney < 0)
+        return false;
+
+      // Make the operation
+      user.money_brl = currentmoney
+      user.cryptocoins[order.firstcurrency] = currentamount
+
+      // Add transaction to history
+      user.transactions.push(order);
+
+      // Update user data
+      this.userService.updateUser(user)
+      return true;
     }
     return false;
   }
