@@ -21,6 +21,7 @@ import { OrdersummaryComponent } from './pages/panel/exchange/ordersummary/order
 import { ExchangeService } from './pages/panel/exchange/exchange.service';
 import { ModalService } from './shared/components/modal/modal.service';
 import { ModalComponent } from './shared/components/modal/modal.component';
+import { PreloaderComponent } from './shared/components/preloader/preloader.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ModalComponent } from './shared/components/modal/modal.component';
     ExchangeComponent,
     OrderComponent,
     OrdersummaryComponent,
-    ModalComponent
+    ModalComponent,
+    PreloaderComponent
   ],
   imports: [
     BrowserModule,
