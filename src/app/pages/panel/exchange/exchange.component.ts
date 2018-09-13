@@ -3,6 +3,7 @@ import * as M from 'materialize-css';
 import { Order } from '../../../shared/models/order.model';
 import { MarketService } from '../../../shared/providers/market.service';
 import { UserService } from '../../../shared/providers/user.service';
+import { ExchangeService } from './exchange.service';
 
 @Component({
   selector: 'app-exchange',
@@ -37,7 +38,7 @@ export class ExchangeComponent implements OnInit {
   // Current tab
   selectedtab: string = ""
 
-  constructor(private market: MarketService, private userService: UserService) {
+  constructor(private market: MarketService, private userService: UserService, private exchangeService: ExchangeService) {
     // Set Default Operation type
     this.selectedtab = "buy";
     this.order.type = "buy";
@@ -87,6 +88,17 @@ export class ExchangeComponent implements OnInit {
   onSubmitOrderClick() {
     // Set the order date
     this.order.date = new Date().toLocaleString()
+
+    // If the order is complete, continue
+    if (this.order.isValid()) {
+      // Send the order to make the transaction
+      this.exchangeService.sendOrder(this.order)
+        .then(() => { // Success
+          this.resetOrder();
+        })
+        .catch(() => { // Error
+        })
+    }
   }
 
 }
