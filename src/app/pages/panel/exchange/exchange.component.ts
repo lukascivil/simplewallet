@@ -32,6 +32,8 @@ export class ExchangeComponent implements OnInit {
   bitcoinbuy = undefined;
   // User Real
   brluser = undefined;
+  // User Currencies
+  currenciesuser = undefined;
 
   // initiates new order Object
   order = new Order();
@@ -46,10 +48,11 @@ export class ExchangeComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Get current user
+    // Get current user 
     this.userService.usercurrent.subscribe(user => {
       // Take the money (brl), that the user has in the database
       this.brluser = user.money_brl;
+      this.currenciesuser = user.cryptocoins;
     });
 
     // Takes the current bitcoin value that is provided by API

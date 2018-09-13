@@ -15,18 +15,31 @@ export class OrderComponent implements OnInit {
   @Input() britabuy;
   @Input() bitcoinbuy;
   @Input() brluser;
+  @Input() currenciesuser;
   @Output() onSubmitOrderClick = new EventEmitter();
-
-  brlusermax: string = "0%";
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  updateProgressMax() {
-    let ruleofthree = (this.order.getTotal() * 100) / this.brluser;
-    this.brlusermax = String(ruleofthree > 100 ? 100 : ruleofthree) + "%";
+  progressValue(): string {
+    // Desired quantity
+    let wantedquantity;
+    // Maximum quantity
+    let maxquantity;
+
+    if (this.order.type == "buy") {
+      wantedquantity = this.order.getTotal();
+      maxquantity = this.brluser;
+    } else {
+      wantedquantity = this.order.getAmount();
+      maxquantity = this.currenciesuser[this.order.firstcurrency];
+    }
+
+    // calculates the percentage of required value and return
+    let ruleofthree = (wantedquantity ? ((wantedquantity * 100) / maxquantity) : 0);
+    return String(ruleofthree > 100 ? 100 : ruleofthree) + "%";
   }
 
   // Add class to selected currency 
@@ -44,12 +57,10 @@ export class OrderComponent implements OnInit {
 
   onAmountInputKeyup(value) {
     this.order.setAmount(Number(value));
-    this.updateProgressMax();
   }
 
   onTotalInputKeyup(value) {
     this.order.setTotal(Number(value));
-    this.updateProgressMax();
   }
 
   emitonSubmitOrderClickEvent() {
