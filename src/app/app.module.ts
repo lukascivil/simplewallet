@@ -18,6 +18,7 @@ import { HttpModule } from '@angular/http';
 import { ExchangeComponent } from './pages/panel/exchange/exchange.component';
 import { OrderComponent } from './pages/panel/exchange/order/order.component';
 import { OrdersummaryComponent } from './pages/panel/exchange/ordersummary/ordersummary.component';
+import { ExchangeService } from './pages/panel/exchange/exchange.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { OrdersummaryComponent } from './pages/panel/exchange/ordersummary/order
     HttpModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [AuthenticationService, UserService, MarketService],
+  providers: [AuthenticationService, UserService, MarketService, ExchangeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
