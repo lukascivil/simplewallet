@@ -58,6 +58,7 @@ export class UserService {
 		// Update users database
 		localStorage.setItem("users", JSON.stringify(users))
 
+		// Update user data
 		localStorage.setItem("user", JSON.stringify(user));
 		this.usersource.next(user);
 	}
