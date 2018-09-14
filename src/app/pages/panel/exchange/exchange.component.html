@@ -11,15 +11,13 @@
       </div>
       <!-- Buy Operation -->
       <div id="buy">
-        <app-order type="buy" [order]="order" [market]="market" [currenciesuser]="currenciesuser" [brluser]="brluser"
-          [currencies]="currencies" [first]='operationtype.buy.first' [second]='operationtype.buy.second'
-          (onSubmitOrderClick)='onSubmitOrderClick()'></app-order>
+        <app-order type="buy" [order]="order" [market]="market" [user]="user" [currencies]="currencies" [first]='operationtype.buy.first'
+          [second]='operationtype.buy.second' (onSubmitOrderClick)='onSubmitOrderClick()'></app-order>
       </div>
       <!-- Sell Operation -->
       <div id="sell">
-        <app-order type="sell" [order]="order" [market]="market" [currenciesuser]="currenciesuser" [brluser]="brluser"
-          [currencies]="currencies" [first]='operationtype.sell.first' [second]='operationtype.sell.second'
-          (onSubmitOrderClick)='onSubmitOrderClick()'></app-order>
+        <app-order type="sell" [order]="order" [market]="market" [user]="user" [currencies]="currencies" [first]='operationtype.sell.first'
+          [second]='operationtype.sell.second' (onSubmitOrderClick)='onSubmitOrderClick()'></app-order>
       </div>
     </div>
   </div>

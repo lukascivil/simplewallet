@@ -5,6 +5,7 @@ import { MarketService } from '../../../shared/providers/market.service';
 import { UserService } from '../../../shared/providers/user.service';
 import { ExchangeService } from './exchange.service';
 import { ModalService } from '../../../shared/components/modal/modal.service';
+import { User } from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-exchange',
@@ -29,10 +30,8 @@ export class ExchangeComponent implements OnInit {
   // Value of currencies on the market provided by the API
   market = { bitcoin: {}, brita: {} }
 
-  // User Real
-  brluser = undefined;
-  // User Currencies
-  currenciesuser = undefined;
+  // User data
+  user: User = undefined;
 
   // initiates new order Object
   order = new Order();
@@ -49,9 +48,7 @@ export class ExchangeComponent implements OnInit {
   ngOnInit() {
     // Get current user 
     this.userService.usercurrent.subscribe(user => {
-      // Take the money (brl), that the user has in the database
-      this.brluser = user.money_brl;
-      this.currenciesuser = user.cryptocoins;
+      this.user = user;
     });
 
     // Takes the current bitcoin value that is provided by API

@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { User } from '../../../../shared/models/user.model';
+import { Order } from '../../../../shared/models/order.model';
 
 @Component({
   selector: 'app-order',
@@ -13,8 +15,7 @@ export class OrderComponent implements OnInit {
   @Input() currencies;
   @Input() order;
   @Input() market;
-  @Input() brluser;
-  @Input() currenciesuser;
+  @Input() user: User;
   @Output() onSubmitOrderClick = new EventEmitter();
 
   constructor() { }
@@ -30,10 +31,10 @@ export class OrderComponent implements OnInit {
 
     if (this.order.type == "buy") {
       wantedquantity = this.order.getTotal();
-      maxquantity = this.brluser;
+      maxquantity = this.user.money_brl;
     } else {
       wantedquantity = this.order.getAmount();
-      maxquantity = this.currenciesuser[this.order.firstcurrency];
+      maxquantity = this.user.cryptocoins[this.order.firstcurrency];
     }
 
     // calculates the percentage of required value and return
