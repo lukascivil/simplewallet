@@ -35,11 +35,11 @@ export class ExchangeService {
 
       // Calculate the current value with the operation type: buy or sell
       if (order.type == "buy") {
-        currentmoney -= order.getTotal();
-        currentamount += order.getAmount();
+        currentmoney = +(currentmoney - order.getTotal()).toFixed(8);
+        currentamount = +(currentamount + order.getAmount()).toFixed(8);
       } else if (order.type == "sell") {
-        currentmoney += order.getTotal();
-        currentamount -= order.getAmount();
+        currentmoney = +(currentmoney + order.getTotal()).toFixed(8);
+        currentamount = +(currentamount - order.getAmount()).toFixed(8);
       } else {
         // without the defined type {buy, sell}, cancel the operation
         return false;

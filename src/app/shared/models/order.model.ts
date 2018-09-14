@@ -19,7 +19,7 @@ export class Order {
   setAmount(value: number) {
     this.amount = value;
     if (this.currentbase != undefined)
-      this.total = this.amount * this.currentbase;
+      this.total = +(this.amount * this.currentbase).toFixed(2);
   }
 
   getAmount(): number {
@@ -29,7 +29,7 @@ export class Order {
   setCurrentbase(value: number) {
     this.currentbase = value;
     if (this.amount != undefined)
-      this.total = this.amount * this.currentbase;
+      this.total = +(this.amount * this.currentbase).toFixed(2);
   }
 
   getCurrentbase(): number {
@@ -39,7 +39,7 @@ export class Order {
   setTotal(value: number) {
     this.total = value
     if (this.currentbase) {
-      this.amount = this.total / this.currentbase;
+      this.amount = +(this.total / this.currentbase).toFixed(8);
     } else {
       throw "Error on currentbase value";
     }
