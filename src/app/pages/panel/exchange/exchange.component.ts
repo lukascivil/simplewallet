@@ -85,8 +85,8 @@ export class ExchangeComponent implements OnInit {
   }
 
   onSubmitOrderClick() {
-    // Set the order date
-    this.order.date = new Date().toLocaleString()
+    // Set the order date/timestamp
+    this.order.date = Date.now();
 
     // If the order is complete, continue
     if (this.order.isValid()) {
