@@ -1,6 +1,13 @@
 import { User } from '../models/user.model';
+import { BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class UserService {
+
+	// Userdata
+	private usersource = new BehaviorSubject<User>(this.getUser());
+	usercurrent = this.usersource.asObservable();
 
 	constructor() { }
 
@@ -34,6 +41,26 @@ export class UserService {
 	// Get user data
 	getUser(): User {
 		return JSON.parse(localStorage.getItem("user"));
+	}
+
+	// Update user data
+	updateUser(user: User) {
+		// Get users database
+		let users_database = localStorage.getItem("users");
+		let users = JSON.parse(users_database)
+
+		// Override user data
+		users.forEach((element, index, array) => {
+			if (element.id == user.id)
+				array[index] = user;
+		});
+
+		// Update users database
+		localStorage.setItem("users", JSON.stringify(users))
+
+		// Update user data
+		localStorage.setItem("user", JSON.stringify(user));
+		this.usersource.next(user);
 	}
 
 	// Generates a unique hash code for the user id

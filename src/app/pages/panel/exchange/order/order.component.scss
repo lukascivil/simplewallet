@@ -1,0 +1,20 @@
+@import "../../../../../styles.scss";
+
+.currencymethod {
+  cursor: pointer;
+}
+
+.selected {
+  border-bottom: 6px solid;
+  border-color: $secondary-color;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+
+// Disable Default html5 input spin box
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */
+}

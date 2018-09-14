@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -15,6 +16,17 @@ import { UserService } from './shared/providers/user.service';
 import { Error404Component } from './pages/error404/error404.component';
 import { MarketService } from './shared/providers/market.service';
 import { HttpModule } from '@angular/http';
+import { ExchangeComponent } from './pages/panel/exchange/exchange.component';
+import { OrderComponent } from './pages/panel/exchange/order/order.component';
+import { OrdersummaryComponent } from './pages/panel/exchange/ordersummary/ordersummary.component';
+import { ExchangeService } from './pages/panel/exchange/exchange.service';
+import { ModalService } from './shared/components/modal/modal.service';
+import { ModalComponent } from './shared/components/modal/modal.component';
+import { PreloaderComponent } from './shared/components/preloader/preloader.component';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [
@@ -24,7 +36,12 @@ import { HttpModule } from '@angular/http';
     HomeComponent,
     LoginComponent,
     registerComponent,
-    Error404Component
+    Error404Component,
+    ExchangeComponent,
+    OrderComponent,
+    OrdersummaryComponent,
+    ModalComponent,
+    PreloaderComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +50,7 @@ import { HttpModule } from '@angular/http';
     HttpModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [AuthenticationService, UserService, MarketService],
+  providers: [AuthenticationService, UserService, MarketService, ExchangeService, ModalService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

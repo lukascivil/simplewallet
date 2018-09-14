@@ -1,0 +1,74 @@
+<div *ngIf="!market.bitcoin?.buy && !market.brita?.buy" class="card-content center">
+  <app-preloader size=""></app-preloader>
+</div>
+
+<div *ngIf="market.bitcoin?.buy && market.brita?.buy" class="card-content">
+  <!-- Currencies to buy -->
+  <div class="section">
+    <h5>Currency</h5>
+    <div class="row nomarginbotton">
+      <ng-container *ngFor="let currency of first">
+        <div class="col s5 m3 currencymethod">
+          <div class="card-panel hoverable center" [ngClass]="{'selected': order.firstcurrency == currency}" (click)="onCurrencyClick('first', currency)">
+            <div [innerHTML]="currencies[currency].icon"></div> <strong>{{currency | titlecase}}</strong>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <!-- Payment Methods -->
+  <div class="section">
+    <h5 *ngIf="order.type=='buy'">Payment Method</h5>
+    <h5 *ngIf="order.type=='sell'">Deposit to</h5>
+    <div class="row nomarginbotton">
+      <ng-container *ngFor="let currency of second">
+        <div class="col s5 m3 currencymethod">
+          <div class="card-panel hoverable center" [ngClass]="{'selected': order.secondcurrency == currency}" (click)="onCurrencyClick('second', currency)">
+            <div [innerHTML]="currencies[currency].icon"></div><strong>{{currency | titlecase}}</strong>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <!-- Amount of currency to buy -->
+  <div class="section">
+    <div class="row valign-wrapper nomarginbotton">
+      <div class="col s6">
+        <h5>Amount</h5>
+      </div>
+      <div class="col s6">
+        <h6 class="right" *ngIf="progressValue() == '100%'">(Value above the allowed*)</h6>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="determinate" [ngClass]="{'red': progressValue() == '100%'}" [ngStyle]="{'width': progressValue()}"></div>
+    </div>
+    <div class="row valign-wrapper nomarginbotton">
+      <div class="input-field col s5">
+        <input id="amount" placeholder="" type="number" maxlength="20" (keyup)="onAmountInputKeyup($event.target.value)"
+          [value]="order.getAmount()" [disabled]="!order.firstcurrency || !order.secondcurrency">
+        <label class="active" for="amount">{{currencies[order.firstcurrency]?.label}}</label>
+      </div>
+      <div class="col s2 center">
+        <i class="fa fa-exchange fa-2x" aria-hidden="true"></i>
+      </div>
+      <div class="input-field col s5">
+        <input id="total" placeholder="" type="number" maxlength="20" (keyup)="onTotalInputKeyup($event.target.value)"
+          [value]="order.getTotal()" [disabled]="!order.firstcurrency || !order.secondcurrency">
+        <label class="active" for="total">{{currencies[order.secondcurrency]?.label}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Button to confirm the transaction -->
+<div class="card-action">
+  <div class="row nomarginbotton">
+    <button class="btn waves-effect waves-light btn-large col s12 m12" [ngClass]="{'disabled': !order.getAmount() || progressValue() == '100%'}"
+      (click)="emitonSubmitOrderClickEvent()" name="action"> <i class="fa fa-check-circle" aria-hidden="true"></i>
+      {{order.type}}
+      {{order.firstcurrency}}
+    </button>
+  </div>
+</div>

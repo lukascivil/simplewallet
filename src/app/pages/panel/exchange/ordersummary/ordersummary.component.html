@@ -1,0 +1,59 @@
+<!-- Current Transaction -->
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Order</span>
+    <div class="divider"></div>
+    <!-- Selected currency to buy -->
+    <div class="section">
+      <div class="row valign-wrapper nomarginbotton">
+        <div class="col s10">
+          <h5>You are {{order.type}}ing {{order.firstcurrency}}</h5>
+        </div>
+        <div class="col s2 right-align">
+          <i class="fa fa-check-circle fa-2x green-text" aria-hidden="true" *ngIf='order.firstcurrency'></i>
+        </div>
+      </div>
+      <div class="row nomarginbotton">
+        <div class="col currencyvalueup">
+          {{order.getAmount()}} {{currencies[order.firstcurrency]?.label}}
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <!-- Selected payment -->
+    <div class="section">
+      <div class="row valign-wrapper nomarginbotton">
+        <div class="col s10">
+          <h5 *ngIf="order.type=='buy'">Payment Method {{order.secondcurrency}}</h5>
+          <h5 *ngIf="order.type=='sell'">Deposit to {{order.secondcurrency}}</h5>
+        </div>
+        <div class="col s2 right-align">
+          <i class="fa fa-check-circle fa-2x green-text" aria-hidden="true" *ngIf='order.secondcurrency'></i>
+        </div>
+      </div>
+      <p class="currencyvalueup">{{currencies[order.secondcurrency]?.label}} </p>
+    </div>
+    <div class="divider"></div>
+    <!-- Cost summary -->
+    <div class="section">
+      <div class="row valign-wrapper">
+        <div class="col s6 m6 currencyvalueup">Currency Base</div>
+        <div class="col s6 m6 right-align currencyvalueup"> {{order.getCurrentbase() | currency: 'BRL': true}}</div>
+      </div>
+      <div class="row valign-wrapper">
+        <div class="col s6 m6 currencyvalueup">Amount</div>
+        <div class="col s6 m6 right-align currencyvalueup"> <span *ngIf="order.getAmount()">X</span>
+          {{order.getAmount()}}</div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col s6 m6 currencyvalueup">
+          Total
+        </div>
+        <div class="col s6 m6 right-align currencyvalueup">
+          {{order.getTotal() | currency: 'BRL': true}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

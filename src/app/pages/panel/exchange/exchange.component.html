@@ -1,0 +1,28 @@
+<div class="row">
+  <!-- Operation -->
+  <div class="col s12 m7">
+    <div class="card">
+      <!-- Transaction type -->
+      <div class="card-tabs">
+        <ul class="tabs tabs-fixed-width">
+          <li class="tab"><a href="#buy" (click)="onTabClick('buy')"> <strong> Buy</strong></a></li>
+          <li class="tab"><a href="#sell" (click)="onTabClick('sell')"><strong>Sell</strong></a></li>
+        </ul>
+      </div>
+      <!-- Buy Operation -->
+      <div id="buy">
+        <app-order type="buy" [order]="order" [market]="market" [user]="user" [currencies]="currencies" [first]='operationtype.buy.first'
+          [second]='operationtype.buy.second' (onSubmitOrderClick)='onSubmitOrderClick()'></app-order>
+      </div>
+      <!-- Sell Operation -->
+      <div id="sell">
+        <app-order type="sell" [order]="order" [market]="market" [user]="user" [currencies]="currencies" [first]='operationtype.sell.first'
+          [second]='operationtype.sell.second' (onSubmitOrderClick)='onSubmitOrderClick()'></app-order>
+      </div>
+    </div>
+  </div>
+  <!-- Order Summary -->
+  <div class="col s12 m5">
+    <app-ordersummary [order]="order" [currencies]="currencies"></app-ordersummary>
+  </div>
+</div>
