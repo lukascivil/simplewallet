@@ -17,7 +17,7 @@ export class ExchangeComponent implements OnInit {
   currencies = {
     bitcoin: { label: "BTC", icon: '<i class="fa fa-btc fa-3x amber-text" aria-hidden="true"></i>' },
     brita: { label: "BTA", icon: '<i class="fa fa-eercast fa-3x purple-text" aria-hidden="true"></i>' },
-    real: { label: "BRL", icon: '<div class="brlmoney"> BRL</div>' }
+    real: { label: "BRL", icon: '<i class="fa fa-money fa-3x stronegreen-text" aria-hidden="true"></i>' }
   };
 
   // Sets the type of operation, first -> Currency to buy, second -> Payment Currency
