@@ -6,7 +6,7 @@ export class Order {
   private amount: number;
   private currentbase: number;
   private total: number;
-  date: string;
+  date: number;
 
   constructor() {
     this.id = this.ID();
