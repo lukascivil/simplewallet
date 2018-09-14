@@ -24,6 +24,11 @@ export class AuthenticationService {
     return promise;
   }
 
+  // Logout
+  logout() {
+    localStorage.removeItem("user");
+  }
+
   // Returns user data if exist
   private getUser(name, password): User {
     let users_database = localStorage.getItem("users");
