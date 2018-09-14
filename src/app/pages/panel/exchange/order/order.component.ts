@@ -13,7 +13,7 @@ export class OrderComponent implements OnInit {
   @Input() first;
   @Input() second;
   @Input() currencies;
-  @Input() order;
+  @Input() order: Order;
   @Input() market;
   @Input() user: User;
   @Output() onSubmitOrderClick = new EventEmitter();
