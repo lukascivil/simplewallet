@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../shared/providers/user.service';
 
 @Component({
   selector: 'app-history',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryComponent implements OnInit {
 
-  constructor() { }
+  transactions = undefined;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    // Get current user
+    let user = this.userService.getUser();
+    this.transactions = user.transactions
   }
 
 }
