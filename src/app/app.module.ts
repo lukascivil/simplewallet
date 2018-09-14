@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -23,6 +22,7 @@ import { ExchangeService } from './pages/panel/exchange/exchange.service';
 import { ModalService } from './shared/components/modal/modal.service';
 import { ModalComponent } from './shared/components/modal/modal.component';
 import { PreloaderComponent } from './shared/components/preloader/preloader.component';
+import { HistoryComponent } from './pages/panel/history/history.component';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 
@@ -41,7 +41,8 @@ registerLocaleData(localePt, 'pt-BR');
     OrderComponent,
     OrdersummaryComponent,
     ModalComponent,
-    PreloaderComponent
+    PreloaderComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
