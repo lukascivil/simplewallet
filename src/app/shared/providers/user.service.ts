@@ -45,6 +45,19 @@ export class UserService {
 
 	// Update user data
 	updateUser(user: User) {
+		// Get users database
+		let users_database = localStorage.getItem("users");
+		let users = JSON.parse(users_database)
+
+		// Override user data
+		users.forEach((element, index, array) => {
+			if (element.id == user.id)
+				array[index] = user;
+		});
+
+		// Update users database
+		localStorage.setItem("users", JSON.stringify(users))
+
 		localStorage.setItem("user", JSON.stringify(user));
 		this.usersource.next(user);
 	}
