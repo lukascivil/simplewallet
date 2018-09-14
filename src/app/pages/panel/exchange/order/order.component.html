@@ -57,6 +57,7 @@
       <div class="input-field col s5">
         <input id="total" placeholder="" type="number" maxlength="20" (keyup)="onTotalInputKeyup($event.target.value)"
           [value]="order.getTotal()" [disabled]="!order.firstcurrency || !order.secondcurrency">
+        <label class="active" for="total">{{currencies[order.secondcurrency]?.label}}</label>
       </div>
     </div>
   </div>
