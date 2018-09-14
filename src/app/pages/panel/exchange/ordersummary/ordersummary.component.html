@@ -9,7 +9,7 @@
         <div class="col s10">
           <h5>You are {{order.type}}ing {{order.firstcurrency}}</h5>
         </div>
-        <div class="col s2">
+        <div class="col s2 right-align">
           <i class="fa fa-check-circle fa-2x green-text" aria-hidden="true" *ngIf='order.firstcurrency'></i>
         </div>
       </div>
@@ -27,7 +27,7 @@
           <h5 *ngIf="order.type=='buy'">Payment Method {{order.secondcurrency}}</h5>
           <h5 *ngIf="order.type=='sell'">Deposit to {{order.secondcurrency}}</h5>
         </div>
-        <div class="col s2">
+        <div class="col s2 right-align">
           <i class="fa fa-check-circle fa-2x green-text" aria-hidden="true" *ngIf='order.secondcurrency'></i>
         </div>
       </div>
