@@ -15,6 +15,9 @@ export class HistoryComponent implements OnInit {
   ngOnInit() {
     // Get current user
     let user = this.userService.getUser();
+
+    // Sort transactions by date
+    user.transactions.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     this.transactions = user.transactions
   }
 
