@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -22,6 +23,10 @@ import { ExchangeService } from './pages/panel/exchange/exchange.service';
 import { ModalService } from './shared/components/modal/modal.service';
 import { ModalComponent } from './shared/components/modal/modal.component';
 import { PreloaderComponent } from './shared/components/preloader/preloader.component';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [
@@ -45,7 +50,7 @@ import { PreloaderComponent } from './shared/components/preloader/preloader.comp
     HttpModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [AuthenticationService, UserService, MarketService, ExchangeService, ModalService],
+  providers: [AuthenticationService, UserService, MarketService, ExchangeService, ModalService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
