@@ -45,6 +45,7 @@ export class OrderComponent implements OnInit {
   // Add class to selected currency and set the currentbase
   onCurrencyClick(what: string, currency: string) {
     if (what == "first") {
+      // Currency current Base
       let base;
 
       // Set firstcurrency name
