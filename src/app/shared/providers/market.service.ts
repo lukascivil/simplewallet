@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable, interval, BehaviorSubject } from 'rxjs';
-import { map, switchMap } from "rxjs/operators";
+import { Observable, interval, BehaviorSubject, of } from 'rxjs';
+import { map, switchMap, catchError } from "rxjs/operators";
 import { BitcoinServerResponse } from '../models/bitcoinserverresponse.model';
 import { BritaServerResponse } from '../models/britaserverresponse.model';
 
@@ -28,7 +28,11 @@ export class MarketService {
 	getBitcoin(): Observable<any> {
 		return interval(3000).pipe(
 			switchMap(() => this.http.get(this.API_BITCOIN)
-				.pipe(map(response => this.bitcoinsource.next(response.json().ticker))))
+				.pipe(
+					map(response => this.bitcoinsource.next(response.json().ticker)),
+					catchError(error => of(`${error}`))
+				)
+			)
 		)
 	}
 
@@ -36,7 +40,11 @@ export class MarketService {
 	getBrita(): Observable<any> {
 		return interval(3000).pipe(
 			switchMap(() => this.http.get(this.API_BRITA)
-				.pipe(map(response => this.britasource.next(response.json().value[0]))))
+				.pipe(
+					map(response => this.britasource.next(response.json().value[0])),
+					catchError(error => of(`${error}`))
+				)
+			)
 		)
 	}
 
