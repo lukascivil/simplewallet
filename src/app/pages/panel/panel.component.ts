@@ -8,15 +8,12 @@ import { MarketService } from '../../shared/providers/market.service';
 })
 export class PanelComponent implements OnInit {
 
-  bitcoin: any;
-  brita: any;
-
-  constructor(private market: MarketService) {
-  }
+  constructor(private market: MarketService) { }
 
   ngOnInit() {
-    this.market.getBitcoin().subscribe(bitcoin => this.bitcoin = bitcoin)
-    this.market.getBrita().subscribe(brita => this.brita = brita)
+    // Init market Service
+    this.market.getBitcoin().subscribe()
+    this.market.getBrita().subscribe()
   }
 
 }
