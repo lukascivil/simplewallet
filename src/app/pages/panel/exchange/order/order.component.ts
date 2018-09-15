@@ -70,11 +70,11 @@ export class OrderComponent implements OnInit {
     }
   }
 
-  onAmountInputKeyup(value) {
+  onChangeAmount(value) {
     this.order.setAmount(Number(value));
   }
 
-  onTotalInputKeyup(value) {
+  onChangeTotal(value) {
     this.order.setTotal(Number(value));
   }
 
