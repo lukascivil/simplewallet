@@ -39,11 +39,12 @@
         <h5>Amount</h5>
       </div>
       <div class="col s6">
-        <h6 class="right" *ngIf="progressValue() == '100%'">(Value above the allowed*)</h6>
+        <h6 class="right" *ngIf="progressValue() == '101%'">(Value above the allowed*)</h6>
       </div>
     </div>
+    {{progressValue()}}
     <div class="progress">
-      <div class="determinate" [ngClass]="{'red': progressValue() == '100%'}" [ngStyle]="{'width': progressValue()}"></div>
+      <div class="determinate" [ngClass]="{'red': progressValue() == '101%'}" [ngStyle]="{'width': progressValue()}"></div>
     </div>
     <div class="row valign-wrapper nomarginbotton">
       <div class="input-field col s5">
@@ -65,7 +66,7 @@
 <!-- Button to confirm the transaction -->
 <div class="card-action">
   <div class="row nomarginbotton">
-    <button class="btn waves-effect waves-light btn-large col s12 m12" [ngClass]="{'disabled': !order.getAmount() || progressValue() == '100%'}"
+    <button class="btn waves-effect waves-light btn-large col s12 m12" [ngClass]="{'disabled': !order.getAmount() || progressValue() == '101%'}"
       (click)="emitonSubmitOrderClickEvent()" name="action"> <i class="fa fa-check-circle" aria-hidden="true"></i>
       {{order.type}}
       {{order.firstcurrency}}

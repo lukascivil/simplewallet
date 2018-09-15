@@ -39,7 +39,7 @@ export class OrderComponent implements OnInit {
 
     // calculates the percentage of required value and return
     let ruleofthree = (wantedquantity ? ((wantedquantity * 100) / maxquantity) : 0);
-    return String(ruleofthree > 100 ? 100 : ruleofthree) + "%";
+    return String(wantedquantity > maxquantity ? 101 : ruleofthree) + "%";
   }
 
   // Add class to selected currency and set the currentbase
