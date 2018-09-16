@@ -46,8 +46,8 @@
             </ng-container>
             <ng-container *ngIf="dropdown == 'BRL/BTA'">
               <span class="top"> Market BRL/BTA</span>
-              <span> Buy {{market.brita?.buy | currency: 'BRL': true}} Sell {{market.brita?.sell | currency: 'BRL':
-                true}}</span>
+              <span> Buy R$ {{market.brita?.buy | number : '1.2-3' }} Sell R$ {{market.brita?.sell | number :
+                '1.2-3'}}</span>
             </ng-container>
           </a>
         </li>
