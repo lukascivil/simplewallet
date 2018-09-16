@@ -20,6 +20,16 @@
     </li>
   </ul>
 
+  <!-- Mobile Market dropdown -->
+  <ul id='mobilemarketdrompdown' class='dropdown-content'>
+    <li>
+      <div class="col s12" (click)="ondropdownClick('BRL/BTC')">BRL/BTC</div>
+    </li>
+    <li>
+      <div class="col s12" (click)="ondropdownClick('BRL/BTA')">BRL/BTA</div>
+    </li>
+  </ul>
+
 
   <!-- Navbar -->
   <nav>
@@ -65,16 +75,24 @@
 
       <div class="divider"></div>
 
-      <!-- Market -->
-      <a class="subheader hide-on-med-and-down">MARKET BRL/BTC</a>
-      <div class="row nomarginbotton hide-on-med-and-down">
-        <div class="col s6 currencyvalueup">
-          <div class="center">Buy</div>
-          <div class="center">{{market.bitcoin?.buy | currency: 'BRL': true}}</div>
+      <!-- Mobile Market -->
+      <div class="row valign-wrapper nomarginbotton center hide-on-med-and-up">
+        <div class="col s12">
+          <a class='dropdown-trigger btn' href='#' data-target='mobilemarketdrompdown'>Market BRL/BTC</a>
         </div>
-        <div class="col s6 currencyvalueup">
-          <div class="center">Sell</div>
-          <div class="center">{{market.bitcoin?.sell | currency: 'BRL': true}}</div>
+      </div>
+      <div class="row nomarginbotton hide-on-med-and-up">
+        <div class="col s12 center nomarginbotton">
+          <div>
+            <ng-container *ngIf="dropdown == 'BRL/BTC'">
+              <span> Buy {{market.bitcoin?.buy | currency: 'BRL': true}} Sell {{market.bitcoin?.sell | currency: 'BRL':
+                true}}</span>
+            </ng-container>
+            <ng-container *ngIf="dropdown == 'BRL/BTA'">
+              <span> Buy R$ {{market.brita?.buy | number : '1.2-3' }} Sell R$ {{market.brita?.sell | number :
+                '1.2-3'}}</span>
+            </ng-container>
+          </div>
         </div>
       </div>
 
