@@ -25,6 +25,8 @@ export class HeaderComponent implements OnInit {
   britabrl: number = undefined;
   // User original Brita
   britauser: number = undefined;
+  // Dropdown
+  dropdown = "BRL/BTC"
 
   // Total in BRL
   totalbrl: number = 0;
@@ -57,6 +59,10 @@ export class HeaderComponent implements OnInit {
         this.britabrl = this.britauser * message.cotacaoCompra;
       }
     });
+  }
+
+  ondropdownClick(value) {
+    this.dropdown = value;
   }
 
   ngAfterContentInit() {

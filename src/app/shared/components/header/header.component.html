@@ -4,6 +4,23 @@
     <li><a [routerLink]="['/login']">Sair</a></li>
   </ul>
 
+  <!-- Market dropdown  -->
+  <ul id="marketdropdown" class="dropdown-content">
+    <li>
+      <div class="row nomarginbotton valign-wrapper" (click)="ondropdownClick('BRL/BTC')">
+        <div class="col s3"><i class="fa fa-btc fa-2x amber-text" aria-hidden="true"></i></div>
+        <div class="col s9">BRL/BTC</div>
+      </div>
+    </li>
+    <li>
+      <div class="row nomarginbotton valign-wrapper" (click)="ondropdownClick('BRL/BTA')">
+        <div class="col s3"> <i class="fa fa-eercast fa-2x purple-text" aria-hidden="true"></i></div>
+        <div class="col s9">BRL/BTC</div>
+      </div>
+    </li>
+  </ul>
+
+
   <!-- Navbar -->
   <nav>
     <div class="nav-wrapper">
@@ -11,10 +28,17 @@
       <a href="#" class="brand-logo center">Simple Wallet</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li class="max">
-          <a>
-            <span class="top"> Market BRL/BTC</span>
-            <span> Buy {{bitcoinsell | currency: 'BRL': true}} Sell {{bitcoinbuy| currency: 'BRL':
-              true}}</span>
+          <a class="dropdown-trigger" data-target="marketdropdown">
+            <ng-container *ngIf="dropdown == 'BRL/BTC'">
+              <span class="top"> Market BRL/BTC</span>
+              <span> Buy {{market.bitcoin?.buy | currency: 'BRL': true}} Sell {{market.bitcoin?.sell | currency: 'BRL':
+                true}}</span>
+            </ng-container>
+            <ng-container *ngIf="dropdown == 'BRL/BTA'">
+              <span class="top"> Market BRL/BTA</span>
+              <span> Buy {{market.brita?.buy | currency: 'BRL': true}} Sell {{market.brita?.sell | currency: 'BRL':
+                true}}</span>
+            </ng-container>
           </a>
         </li>
         <!-- User Dropdown Trigger -->
