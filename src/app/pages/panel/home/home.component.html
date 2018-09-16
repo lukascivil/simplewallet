@@ -21,7 +21,7 @@
             </div>
             <div class="col s7 right-align">
               <div class="currencyvalueup">
-                {{brluser | currency: 'BRL': true}}
+                {{user.money_brl | currency: 'BRL': true}}
               </div>
             </div>
           </div>
@@ -30,7 +30,9 @@
         <div class="divider"></div>
         <div class="section">
           <div class="row valign-wrapper">
-            <div class="col s2"><i class="fa fa-btc fa-3x amber-text" aria-hidden="true"></i></div>
+            <div class="col s2 center-align">
+              <i class="fa fa-btc fa-3x amber-text" aria-hidden="true"></i>
+            </div>
             <div class="col s3">
               <div class="">
                 Bitcoin
@@ -44,7 +46,7 @@
                 {{bitcoinbrl| currency: 'BRL': true}}
               </div>
               <div class="currencyvalueup">
-                {{bitcoinuser}} BTC
+                {{user.cryptocoins.bitcoin | number : '1.2-8'}} BTC
               </div>
             </div>
           </div>
@@ -53,7 +55,9 @@
         <div class="divider"></div>
         <div class="section">
           <div class="row valign-wrapper">
-            <div class="col s2"><i class="fa fa-eercast fa-2x purple-text" aria-hidden="true"></i></div>
+            <div class="col s2 center-align">
+              <i class="fa fa-eercast fa-3x purple-text" aria-hidden="true"></i>
+            </div>
             <div class="col s3">
               <div class="">
                 Brita
@@ -67,7 +71,7 @@
                 {{britabrl | currency: 'BRL': true}}
               </div>
               <div class="currencyvalueup">
-                {{britauser}} BTA
+                {{user.cryptocoins.brita | number : '1.2-8'}} BTA
               </div>
             </div>
           </div>

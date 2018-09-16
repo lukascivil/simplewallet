@@ -39,24 +39,23 @@
         <h5>Amount</h5>
       </div>
       <div class="col s6">
-        <h6 class="right" *ngIf="progressValue() == '100%'">(Value above the allowed*)</h6>
+        <h6 class="right" *ngIf="progressValue() == '101%'">(Value above the allowed*)</h6>
       </div>
     </div>
     <div class="progress">
-      <div class="determinate" [ngClass]="{'red': progressValue() == '100%'}" [ngStyle]="{'width': progressValue()}"></div>
+      <div class="determinate" [ngClass]="{'red': progressValue() == '101%'}" [ngStyle]="{'width': progressValue()}"></div>
     </div>
     <div class="row valign-wrapper nomarginbotton">
       <div class="input-field col s5">
-        <input id="amount" placeholder="" type="number" maxlength="20" (keyup)="onAmountInputKeyup($event.target.value)"
-          [value]="order.getAmount()" [disabled]="!order.firstcurrency || !order.secondcurrency">
+        <input id="amount" placeholder="" type="number" (ngModelChange)="onChangeAmount($event)" [ngModel]="order.getAmount()"
+          [disabled]="!order.firstcurrency || !order.secondcurrency">
         <label class="active" for="amount">{{currencies[order.firstcurrency]?.label}}</label>
       </div>
       <div class="col s2 center">
         <i class="fa fa-exchange fa-2x" aria-hidden="true"></i>
       </div>
       <div class="input-field col s5">
-        <input id="total" placeholder="" type="number" maxlength="20" (keyup)="onTotalInputKeyup($event.target.value)"
-          [value]="order.getTotal()" [disabled]="!order.firstcurrency || !order.secondcurrency">
+        <input id="total" currencyMask (ngModelChange)="onChangeTotal($event)" [ngModel]="order.getTotal()" [disabled]="!order.firstcurrency || !order.secondcurrency">
         <label class="active" for="total">{{currencies[order.secondcurrency]?.label}}</label>
       </div>
     </div>
@@ -65,7 +64,7 @@
 <!-- Button to confirm the transaction -->
 <div class="card-action">
   <div class="row nomarginbotton">
-    <button class="btn waves-effect waves-light btn-large col s12 m12" [ngClass]="{'disabled': !order.getAmount() || progressValue() == '100%'}"
+    <button class="btn waves-effect waves-light btn-large col s12 m12" [ngClass]="{'disabled': !order.getAmount() || progressValue() == '101%' || order.getTotal() < lowordervalue}"
       (click)="emitonSubmitOrderClickEvent()" name="action"> <i class="fa fa-check-circle" aria-hidden="true"></i>
       {{order.type}}
       {{order.firstcurrency}}

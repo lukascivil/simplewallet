@@ -1,25 +1,60 @@
 <header>
-  <!-- Dropdown Structure -->
+  <!-- User dropdown  -->
   <ul id="userdropdown" class="dropdown-content">
     <li><a [routerLink]="['/login']">Sair</a></li>
   </ul>
+
+  <!-- Market dropdown  -->
+  <ul id="marketdropdown" class="dropdown-content">
+    <li>
+      <div class="row nomarginbotton valign-wrapper" (click)="ondropdownClick('BRL/BTC')">
+        <div class="col s3"><i class="fa fa-btc fa-2x amber-text" aria-hidden="true"></i></div>
+        <div class="col s9">BRL/BTC</div>
+      </div>
+    </li>
+    <li>
+      <div class="row nomarginbotton valign-wrapper" (click)="ondropdownClick('BRL/BTA')">
+        <div class="col s3"> <i class="fa fa-eercast fa-2x purple-text" aria-hidden="true"></i></div>
+        <div class="col s9">BRL/BTA</div>
+      </div>
+    </li>
+  </ul>
+
+  <!-- Mobile Market dropdown -->
+  <ul id='mobilemarketdrompdown' class='dropdown-content'>
+    <li>
+      <div class="col s12" (click)="ondropdownClick('BRL/BTC')">BRL/BTC</div>
+    </li>
+    <li>
+      <div class="col s12" (click)="ondropdownClick('BRL/BTA')">BRL/BTA</div>
+    </li>
+  </ul>
+
 
   <!-- Navbar -->
   <nav>
     <div class="nav-wrapper">
       <!-- Product Logo -->
       <a href="#" class="brand-logo center">Simple Wallet</a>
+      <!-- Market -->
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li class="max">
-          <a>
-            <span class="top"> Market BRL/BTC</span>
-            <span> Buy {{bitcoinsell | currency: 'BRL': true}} Sell {{bitcoinbuy| currency: 'BRL':
-              true}}</span>
+          <a class="dropdown-trigger" data-target="marketdropdown">
+            <ng-container *ngIf="dropdown == 'BRL/BTC'">
+              <span class="top"> Market BRL/BTC</span>
+              <span> Buy {{market.bitcoin?.buy | currency: 'BRL': true}} Sell {{market.bitcoin?.sell | currency: 'BRL':
+                true}}</span>
+            </ng-container>
+            <ng-container *ngIf="dropdown == 'BRL/BTA'">
+              <span class="top"> Market BRL/BTA</span>
+              <span> Buy R$ {{market.brita?.buy | number : '1.2-3' }} Sell R$ {{market.brita?.sell | number :
+                '1.2-3'}}</span>
+            </ng-container>
           </a>
         </li>
         <!-- User Dropdown Trigger -->
         <li>
-          <a class="dropdown-trigger" href="#!" data-target="userdropdown">Lucas Cordeiro da Silva <i class="fa fa-user-circle-o fa-1x"
+          <a class="dropdown-trigger valign-wrapper" href="#!" data-target="userdropdown">{{user.name}}&ensp;<i class="fa fa-user-circle-o fa-2x"
               aria-hidden="true"></i></a>
         </li>
       </ul>
@@ -41,32 +76,40 @@
 
       <div class="divider"></div>
 
-      <!-- Market -->
-      <a class="subheader hide-on-med-and-down">MARKET BRL/BTC</a>
-      <div class="row nomarginbotton hide-on-med-and-down">
-        <div class="col s6 currencyvalueup">
-          <div class="center">Buy</div>
-          <div class="center">{{bitcoinsell | currency: 'BRL': true}}</div>
+      <!-- Mobile Market -->
+      <div class="row valign-wrapper nomarginbotton center hide-on-med-and-up">
+        <div class="col s12">
+          <a class='dropdown-trigger btn' href='#' data-target='mobilemarketdrompdown'>Market BRL/BTC</a>
         </div>
-        <div class="col s6 currencyvalueup">
-          <div class="center">Sell</div>
-          <div class="center">{{bitcoinbuy | currency: 'BRL': true}}</div>
+      </div>
+      <div class="row nomarginbotton hide-on-med-and-up">
+        <div class="col s12 center nomarginbotton">
+          <div>
+            <ng-container *ngIf="dropdown == 'BRL/BTC'">
+              <span> Buy {{market.bitcoin?.buy | currency: 'BRL': true}} Sell {{market.bitcoin?.sell | currency: 'BRL':
+                true}}</span>
+            </ng-container>
+            <ng-container *ngIf="dropdown == 'BRL/BTA'">
+              <span> Buy R$ {{market.brita?.buy | number : '1.2-3' }} Sell R$ {{market.brita?.sell | number :
+                '1.2-3'}}</span>
+            </ng-container>
+          </div>
         </div>
       </div>
 
       <!-- Accounting Balance -->
       <a class="subheader">ACCOUNTING BALANCE</a>
-      <div class="row nomarginbotton">
-        <div class="col s6 center"><strong class="brlmoney"> BRL</strong></div>
-        <div class="col s6 center currencyvalueup">{{brluser | currency: 'BRL': true }}</div>
+      <div class="row valign-wrapper nomarginbotton">
+        <div class="col s6 m6 center-align"><i class="fa fa-money fa-2x stronegreen-text" aria-hidden="true"></i></div>
+        <div class="col s6 m6 center-align currencyvalueup">{{user.money_brl | currency: 'BRL': true }}</div>
       </div>
-      <div class="row nomarginbotton">
-        <div class="col s6 center"><i class="fa fa-btc fa-3x amber-text" aria-hidden="true"></i></div>
-        <div class="col s6 center currencyvalueup">{{bitcoinuser}}</div>
+      <div class="row valign-wrapper nomarginbotton">
+        <div class="col s6 center-align"><i class="fa fa-btc fa-2x amber-text" aria-hidden="true"></i></div>
+        <div class="col s6 center-align currencyvalueup">{{user.cryptocoins.bitcoin | number : '1.2-8'}}</div>
       </div>
-      <div class="row nomarginbotton">
-        <div class="col s6 center"><i class="fa fa-eercast fa-2x purple-text" aria-hidden="true"></i></div>
-        <div class="col s6 center currencyvalueup">{{britauser}}</div>
+      <div class="row valign-wrapper nomarginbotton">
+        <div class="col s6 center-align"><i class="fa fa-eercast fa-2x purple-text" aria-hidden="true"></i></div>
+        <div class="col s6 center-align currencyvalueup">{{user.cryptocoins.brita | number : '1.2-8'}}</div>
       </div>
     </li>
 
@@ -83,5 +126,15 @@
       <a class="waves-effect waves-green sidenav-close" [routerLink]="['/exchange']"><i class="fa fa-exchange fa-2x"
           aria-hidden="true"></i>Buy/Sell</a>
     </li>
+    <li>
+      <a class="waves-effect waves-green sidenav-close" [routerLink]="['/history']"><i class="fa fa-history fa-2x"
+          aria-hidden="true"></i>History</a>
+    </li>
+
+    <li class="hide-on-med-and-up">
+      <a class="waves-effect waves-green sidenav-close" [routerLink]="['/login']"><i class="fa fa-sign-out fa-2x"
+          aria-hidden="true"></i>Exit</a>
+    </li>
+
   </ul>
 </header>

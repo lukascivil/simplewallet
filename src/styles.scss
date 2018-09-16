@@ -22,6 +22,11 @@ $link-color: color("green", "darken-1") !default;
   font-size: 19px;
 }
 
+// Table hover
+table.highlight tbody tr:hover {
+  background-color: lighten($secondary-color, 40%) !important;
+}
+
 // Sidenav menu hover
 ul.sidenav li a:hover {
   background-color: lighten($secondary-color, 40%) !important;

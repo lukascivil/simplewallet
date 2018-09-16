@@ -18,6 +18,9 @@ export class OrderComponent implements OnInit {
   @Input() user: User;
   @Output() onSubmitOrderClick = new EventEmitter();
 
+  // Lowest value for an order
+  lowordervalue = 0.01
+
   constructor() { }
 
   ngOnInit() {
@@ -39,7 +42,7 @@ export class OrderComponent implements OnInit {
 
     // calculates the percentage of required value and return
     let ruleofthree = (wantedquantity ? ((wantedquantity * 100) / maxquantity) : 0);
-    return String(ruleofthree > 100 ? 100 : ruleofthree) + "%";
+    return String(wantedquantity > maxquantity ? 101 : ruleofthree) + "%";
   }
 
   // Add class to selected currency and set the currentbase
@@ -70,11 +73,11 @@ export class OrderComponent implements OnInit {
     }
   }
 
-  onAmountInputKeyup(value) {
+  onChangeAmount(value) {
     this.order.setAmount(Number(value));
   }
 
-  onTotalInputKeyup(value) {
+  onChangeTotal(value) {
     this.order.setTotal(Number(value));
   }
 

@@ -3,6 +3,7 @@ import { MarketService } from '../../../shared/providers/market.service';
 import { Title } from '@angular/platform-browser';
 import { UserService } from '../../../shared/providers/user.service';
 import { Chart } from 'chart.js';
+import { User } from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-home',
@@ -11,69 +12,76 @@ import { Chart } from 'chart.js';
 })
 export class HomeComponent implements OnInit {
 
-  // User Real
-  brluser: number = undefined;
-
   // Bitcoin in BRL
   bitcoinbrl: number = undefined;
-  // User original Bitcoin
-  bitcoinuser: number = undefined;
-
   // Brita in BRL
   britabrl: number = undefined;
-  // User original Brita
-  britauser: number = undefined;
 
   // Total in BRL
   totalbrl: number = 0;
 
+  // User data
+  user: User;
+
   // Chart Object
   chart;
+  // Chart State
+  ischartrendered;
+
+  // Substriptions
+  private _userSubscription;
+  private _bitcoinSubscription;
+  private _britaSubscription;
 
   constructor(private market: MarketService, public title: Title, private userService: UserService) {
+    this.ischartrendered = false;
     // Set the page title
     title.setTitle("Dashboard");
   }
 
   ngOnInit() {
     // Get current user
-    let user = this.userService.getUser();
-    // Take the money (brl), bitcoin, brita that the user has in the database
-    this.brluser = user.money_brl;
-    this.bitcoinuser = user.cryptocoins.bitcoin;
-    this.britauser = user.cryptocoins.brita;
+    this._userSubscription = this.userService.usercurrent.subscribe(user => {
+      this.user = user;
+    });
 
     // Takes the current bitcoin value that is provided by API
-    this.market.bitcoincurrent.subscribe(message => {
-      if (message.buy !== undefined) {
-        // Calculate the value of the bitcoin in brl
-        this.bitcoinbrl = this.bitcoinuser * Number(message.buy);
-        // Calculate total
-        this.calculateTotalMoney();
-      }
+    this._bitcoinSubscription = this.market.bitcoincurrent.subscribe(message => {
+      // Calculate the value of the bitcoin in brl
+      this.bitcoinbrl = this.user.cryptocoins.bitcoin * Number(message.buy);
+      // Calculate total
+      this.calculateTotalMoney();
     });
 
     // Takes the current britas value that is provided by API
-    this.market.britacurrent.subscribe(message => {
-      if (message.cotacaoCompra !== undefined) {
-        // Calculate the value of the britas in brl
-        this.britabrl = this.britauser * message.cotacaoCompra;
-        // Calculate total
-        this.calculateTotalMoney();
-      }
+    this._britaSubscription = this.market.britacurrent.subscribe(message => {
+      // Calculate the value of the britas in brl
+      this.britabrl = this.user.cryptocoins.brita * message.cotacaoCompra;
+      // Calculate total
+      this.calculateTotalMoney();
     });
   }
 
   ngAfterViewInit() {
-    this.renderChart()
+    this.ischartrendered = true;
+    this.renderChart();
+  }
+
+  // Unsubscribe all substriptions
+  ngOnDestroy() {
+    this._userSubscription.unsubscribe();
+    this._bitcoinSubscription.unsubscribe();
+    this._britaSubscription.unsubscribe();
   }
 
   // Calculates the total value of currencies in brl
   calculateTotalMoney() {
     // Only calculates if the value of the coins is set
-    if (this.brluser != undefined && this.bitcoinbrl != undefined && this.britabrl != undefined) {
-      this.totalbrl = this.bitcoinbrl + this.britabrl + this.brluser;
-      this.updateChart([this.brluser, this.bitcoinbrl, this.britabrl]);
+    if (this.user.money_brl != undefined && this.bitcoinbrl != undefined && this.britabrl != undefined) {
+      this.totalbrl = this.bitcoinbrl + this.britabrl + this.user.money_brl;
+      // If the chart is already loaded update it
+      if (this.ischartrendered)
+        this.updateChart([this.user.money_brl, this.bitcoinbrl, this.britabrl]);
     }
   }
 

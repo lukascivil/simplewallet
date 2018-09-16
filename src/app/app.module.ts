@@ -25,8 +25,20 @@ import { PreloaderComponent } from './shared/components/preloader/preloader.comp
 import { HistoryComponent } from './pages/panel/history/history.component';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { CurrencyMaskModule } from "ng2-currency-mask";
+import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
 
 registerLocaleData(localePt, 'pt-BR');
+
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: "left",
+  allowNegative: false,
+  decimal: ",",
+  precision: 2,
+  prefix: "R$ ",
+  suffix: "",
+  thousands: "."
+};
 
 @NgModule({
   declarations: [
@@ -49,9 +61,10 @@ registerLocaleData(localePt, 'pt-BR');
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    CurrencyMaskModule
   ],
-  providers: [AuthenticationService, UserService, MarketService, ExchangeService, ModalService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
+  providers: [AuthenticationService, UserService, MarketService, ExchangeService, ModalService, { provide: LOCALE_ID, useValue: 'pt-BR' }, { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
