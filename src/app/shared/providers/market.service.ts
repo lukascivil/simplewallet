@@ -11,8 +11,11 @@ export class MarketService {
 	// API URL mercadobitcoin.net
 	private API_BITCOIN = "http://www.mercadobitcoin.net/api/BTC/ticker/";
 
+	// Defined date for Banco Central do Brasil API query
+	// Ps:. Date chosen Arbitrarily
+	private BRITA_DATE = "'9-14-2018'";
 	// API URL Banco Central do Brasil
-	private API_BRITA = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='02-09-2018'&$top=100&$format=json&$select=cotacaoCompra,cotacaoVenda";
+	private API_BRITA = `https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao=${this.BRITA_DATE}&$top=100&$format=json&$select=cotacaoCompra,cotacaoVenda`;
 
 	// Bitcoin, initialize with BitcoinServerResponse
 	private bitcoinsource = new BehaviorSubject<BitcoinServerResponse>(new BitcoinServerResponse);
