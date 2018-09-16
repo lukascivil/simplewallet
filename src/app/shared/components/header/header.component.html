@@ -1,5 +1,5 @@
 <header>
-  <!-- Dropdown Structure -->
+  <!-- User dropdown  -->
   <ul id="userdropdown" class="dropdown-content">
     <li><a [routerLink]="['/login']">Sair</a></li>
   </ul>
@@ -43,7 +43,7 @@
         </li>
         <!-- User Dropdown Trigger -->
         <li>
-          <a class="dropdown-trigger" href="#!" data-target="userdropdown">Lucas Cordeiro da Silva <i class="fa fa-user-circle-o fa-1x"
+          <a class="dropdown-trigger valign-wrapper" href="#!" data-target="userdropdown">{{user.name}}&ensp;<i class="fa fa-user-circle-o fa-2x"
               aria-hidden="true"></i></a>
         </li>
       </ul>
