@@ -70,27 +70,27 @@
       <div class="row nomarginbotton hide-on-med-and-down">
         <div class="col s6 currencyvalueup">
           <div class="center">Buy</div>
-          <div class="center">{{bitcoinsell | currency: 'BRL': true}}</div>
+          <div class="center">{{market.bitcoin?.buy | currency: 'BRL': true}}</div>
         </div>
         <div class="col s6 currencyvalueup">
           <div class="center">Sell</div>
-          <div class="center">{{bitcoinbuy | currency: 'BRL': true}}</div>
+          <div class="center">{{market.bitcoin?.sell | currency: 'BRL': true}}</div>
         </div>
       </div>
 
       <!-- Accounting Balance -->
       <a class="subheader">ACCOUNTING BALANCE</a>
-      <div class="row nomarginbotton">
-        <div class="col s6 center"><strong class="brlmoney"> BRL</strong></div>
-        <div class="col s6 center currencyvalueup">{{brluser | currency: 'BRL': true }}</div>
+      <div class="row valign-wrapper nomarginbotton">
+        <div class="col s6 m6 center-align"><i class="fa fa-money fa-2x stronegreen-text" aria-hidden="true"></i></div>
+        <div class="col s6 m6 center-align currencyvalueup">{{user.money_brl | currency: 'BRL': true }}</div>
       </div>
-      <div class="row nomarginbotton">
-        <div class="col s6 center"><i class="fa fa-btc fa-3x amber-text" aria-hidden="true"></i></div>
-        <div class="col s6 center currencyvalueup">{{bitcoinuser}}</div>
+      <div class="row valign-wrapper nomarginbotton">
+        <div class="col s6 center-align"><i class="fa fa-btc fa-2x amber-text" aria-hidden="true"></i></div>
+        <div class="col s6 center-align currencyvalueup">{{user.cryptocoins.bitcoin | number : '1.2-8'}}</div>
       </div>
-      <div class="row nomarginbotton">
-        <div class="col s6 center"><i class="fa fa-eercast fa-2x purple-text" aria-hidden="true"></i></div>
-        <div class="col s6 center currencyvalueup">{{britauser}}</div>
+      <div class="row valign-wrapper nomarginbotton">
+        <div class="col s6 center-align"><i class="fa fa-eercast fa-2x purple-text" aria-hidden="true"></i></div>
+        <div class="col s6 center-align currencyvalueup">{{user.cryptocoins.brita | number : '1.2-8'}}</div>
       </div>
     </li>
 
