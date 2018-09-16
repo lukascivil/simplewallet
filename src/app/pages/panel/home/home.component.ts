@@ -25,12 +25,16 @@ export class HomeComponent implements OnInit {
 
   // Chart Object
   chart;
+  // Chart State
+  ischartrendered;
+
   // Substriptions
   private _userSubscription;
   private _bitcoinSubscription;
   private _britaSubscription;
 
   constructor(private market: MarketService, public title: Title, private userService: UserService) {
+    this.ischartrendered = false;
     // Set the page title
     title.setTitle("Dashboard");
   }
@@ -59,7 +63,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.renderChart()
+    this.ischartrendered = true;
+    this.renderChart();
+  }
+
   // Unsubscribe all substriptions
   ngOnDestroy() {
     this._userSubscription.unsubscribe();
@@ -72,6 +79,9 @@ export class HomeComponent implements OnInit {
     // Only calculates if the value of the coins is set
     if (this.user.money_brl != undefined && this.bitcoinbrl != undefined && this.britabrl != undefined) {
       this.totalbrl = this.bitcoinbrl + this.britabrl + this.user.money_brl;
+      // If the chart is already loaded update it
+      if (this.ischartrendered)
+        this.updateChart([this.user.money_brl, this.bitcoinbrl, this.britabrl]);
     }
   }
 
