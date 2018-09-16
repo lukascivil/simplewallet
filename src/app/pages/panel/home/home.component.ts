@@ -25,6 +25,10 @@ export class HomeComponent implements OnInit {
 
   // Chart Object
   chart;
+  // Substriptions
+  private _userSubscription;
+  private _bitcoinSubscription;
+  private _britaSubscription;
 
   constructor(private market: MarketService, public title: Title, private userService: UserService) {
     // Set the page title
@@ -56,6 +60,11 @@ export class HomeComponent implements OnInit {
 
   ngAfterViewInit() {
     this.renderChart()
+  // Unsubscribe all substriptions
+  ngOnDestroy() {
+    this._userSubscription.unsubscribe();
+    this._bitcoinSubscription.unsubscribe();
+    this._britaSubscription.unsubscribe();
   }
 
   // Calculates the total value of currencies in brl
