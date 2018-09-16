@@ -6,6 +6,7 @@ import { UserService } from '../../../shared/providers/user.service';
 import { ExchangeService } from './exchange.service';
 import { ModalService } from '../../../shared/components/modal/modal.service';
 import { User } from '../../../shared/models/user.model';
+import { Market } from '../../../shared/models/market.model';
 
 @Component({
   selector: 'app-exchange',
@@ -28,39 +29,46 @@ export class ExchangeComponent implements OnInit {
   };
 
   // Value of currencies on the market provided by the API
-  market = { bitcoin: {}, brita: {} }
+  market: Market;
 
   // User data
-  user: User = undefined;
+  user: User;
 
   // initiates new order Object
-  order = new Order();
+  order: Order;
 
   // Current tab
   selectedtab: string = ""
 
+  // Subscriptions
+  private _userSubscription;
+  private _bitcoinSubscription;
+  private _britaSubscription;
+
   constructor(private marketService: MarketService, private userService: UserService, private exchangeService: ExchangeService, private modalService: ModalService) {
+    this.market = new Market();
+    this.order = new Order();
     // Set Default Operation type
     this.selectedtab = "buy";
     this.order.type = "buy";
   }
 
   ngOnInit() {
-    // Get current user 
-    this.userService.usercurrent.subscribe(user => {
+    // Get current user
+    this._userSubscription = this.userService.usercurrent.subscribe(user => {
       this.user = user;
     });
 
     // Takes the current bitcoin value that is provided by API
-    this.marketService.bitcoincurrent.subscribe(message => {
-      this.market.bitcoin["buy"] = Number(message.buy)
-      this.market.bitcoin["sell"] = Number(message.sell)
+    this._bitcoinSubscription = this.marketService.bitcoincurrent.subscribe(message => {
+      this.market.bitcoin.buy = Number(message.buy)
+      this.market.bitcoin.sell = Number(message.sell)
     });
 
     // Takes the current britas value that is provided by API
-    this.marketService.britacurrent.subscribe(message => {
-      this.market.brita["buy"] = Number(message.cotacaoCompra)
-      this.market.brita["sell"] = Number(message.cotacaoVenda)
+    this._britaSubscription = this.marketService.britacurrent.subscribe(message => {
+      this.market.brita.buy = Number(message.cotacaoCompra)
+      this.market.brita.sell = Number(message.cotacaoVenda)
     });
   }
 
