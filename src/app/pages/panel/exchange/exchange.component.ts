@@ -72,6 +72,13 @@ export class ExchangeComponent implements OnInit {
     });
   }
 
+  // Unsubscribe all subscriptions
+  ngOnDestroy() {
+    this._userSubscription.unsubscribe();
+    this._bitcoinSubscription.unsubscribe();
+    this._britaSubscription.unsubscribe();
+  }
+
   ngAfterContentInit() {
     // Auto Init all Materialize Components
     M.AutoInit();
