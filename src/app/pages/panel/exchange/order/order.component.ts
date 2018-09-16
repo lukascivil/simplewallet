@@ -18,6 +18,9 @@ export class OrderComponent implements OnInit {
   @Input() user: User;
   @Output() onSubmitOrderClick = new EventEmitter();
 
+  // Lowest value for an order
+  lowordervalue = 0.01
+
   constructor() { }
 
   ngOnInit() {

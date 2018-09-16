@@ -64,7 +64,7 @@
 <!-- Button to confirm the transaction -->
 <div class="card-action">
   <div class="row nomarginbotton">
-    <button class="btn waves-effect waves-light btn-large col s12 m12" [ngClass]="{'disabled': !order.getAmount() || progressValue() == '101%'}"
+    <button class="btn waves-effect waves-light btn-large col s12 m12" [ngClass]="{'disabled': !order.getAmount() || progressValue() == '101%' || order.getTotal() < lowordervalue}"
       (click)="emitonSubmitOrderClickEvent()" name="action"> <i class="fa fa-check-circle" aria-hidden="true"></i>
       {{order.type}}
       {{order.firstcurrency}}
