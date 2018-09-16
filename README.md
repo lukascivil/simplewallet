@@ -1,14 +1,34 @@
-<img src="http://lukascivil.com.br/githubimages/simplewallet/Figure_1.png" width="100">
+<p align="center">
+<img src="http://lukascivil.com.br/githubimages/simplewallet/Figure_1.png" width="120">
+</p>
+
 # Simplewallet
 Example of a web-App that provides virtual cryptocurrency wallets. The application allows the user to perform some operations such as: sell / buy currencies, view the balance and transactions extract.
 
 ### Example
 [master](http://simplewallet.lukascivil.com.br/login)
 
+## Images
+### On Desktop
+<p align="center">
 <img src="http://lukascivil.com.br/githubimages/simplewallet/Figure_2.png" width="400">
+</p>
 
-<img src="http://lukascivil.com.br/githubimages/simplewallet/Figure_3.png" width="200">
+### On Mobile
+<p align="center">
+  <img src="http://lukascivil.com.br/githubimages/simplewallet/Figure_3.png" width="170">
 
+  <img src="http://lukascivil.com.br/githubimages/simplewallet/Figure_4.png" width="170">
+
+  <img src="http://lukascivil.com.br/githubimages/simplewallet/Figure_5.png" width="170">
+
+  <img src="http://lukascivil.com.br/githubimages/simplewallet/Figure_6.png" width="170">
+  </p>
+
+  <img src="http://lukascivil.com.br/githubimages/simplewallet/Figure_7.png" width="170">
+</p>
+
+---
 ### Prerequisites
 - Nodejs, npm
 - Angular
