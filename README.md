@@ -32,9 +32,10 @@ The application works with three currencies: Real, Bitcoin and Brita. When regis
 ### Prerequisites
 - Nodejs, npm
 - Angular v6.1
-- [materializecss v1.0.0](https://materializecss.com/)
+- [materializecss v1.0.0](https://github.com/Dogfalo/materialize)
 - [Font Awesome v4.7](https://fontawesome.com/v4.7.0/icons/)
 - [ng2-currency-mask v5.3.1](https://github.com/cesarrew/ng2-currency-mask)
+- [Chart.js v2.7.2](https://github.com/chartjs/Chart.js)
 
 ---
 ## Installation
