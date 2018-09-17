@@ -1,0 +1,13 @@
+@import "../../../../../styles.scss";
+
+// styles for large screens and up
+@media #{$large-and-up} {
+    .brand-logo {
+        padding-left: 300px;
+    }
+}
+
+#nav-mobile .top {
+  position: absolute;
+  top: -21px;
+}

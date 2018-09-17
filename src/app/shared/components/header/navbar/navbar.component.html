@@ -1,0 +1,30 @@
+<nav>
+  <div class="nav-wrapper">
+    <!-- Product Logo -->
+    <a href="#" class="brand-logo center">Simple Wallet</a>
+    <!-- Market -->
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li class="max">
+        <a class="dropdown-trigger" data-target="marketdropdown">
+          <ng-container *ngIf="dropdown == 'BRL/BTC'">
+            <span class="top"> Market BRL/BTC</span>
+            <span> Buy {{market.bitcoin?.buy | currency: 'BRL': true}} Sell {{market.bitcoin?.sell | currency: 'BRL':
+              true}}</span>
+          </ng-container>
+          <ng-container *ngIf="dropdown == 'BRL/BTA'">
+            <span class="top"> Market BRL/BTA</span>
+            <span> Buy R$ {{market.brita?.buy | number : '1.2-3' }} Sell R$ {{market.brita?.sell | number :
+              '1.2-3'}}</span>
+          </ng-container>
+        </a>
+      </li>
+      <!-- User Dropdown Trigger -->
+      <li>
+        <a class="dropdown-trigger valign-wrapper" href="#!" data-target="userdropdown">{{user.name}}&ensp;<i class="fa fa-user-circle-o fa-2x"
+            aria-hidden="true"></i></a>
+      </li>
+    </ul>
+    <!-- SideNav hamburger Icon -->
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></a>
+  </div>
+</nav>
