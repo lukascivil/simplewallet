@@ -19,34 +19,37 @@ export class LoginComponent implements OnInit {
     this.authenticationService.logout();
 
     this.loginForm = this.formBuilder.group({
-      username: this.formBuilder.control("", [Validators.required, Validators.minLength(8)]),
-      password: this.formBuilder.control("", [Validators.required, Validators.minLength(8)]),
-    })
+      username: this.formBuilder.control('', [Validators.required, Validators.minLength(8)]),
+      password: this.formBuilder.control('', [Validators.required, Validators.minLength(8)]),
+    });
   }
 
   // Check if the inputs are valid
   isValidInput(name): string {
-    if (this.loginForm.get(name).invalid && this.loginForm.get(name).dirty)
-      return "invalid";
+    if (this.loginForm.get(name).invalid && this.loginForm.get(name).dirty) {
+      return 'invalid';
+    }
   }
 
   onFormSubmit(): void {
-    let username = this.loginForm.get('username').value;
-    let password = this.loginForm.get('password').value;
+    const username = this.loginForm.get('username').value;
+    const password = this.loginForm.get('password').value;
 
     // Prevent auth
-    if (this.loginForm.invalid)
-      return
+    if (this.loginForm.invalid) {
+      return;
+    }
 
     // Authenticate user
     this.authenticationService.login(username, password)
       .then(result => {
-        console.log(result)
-        if (result)
-          this.router.navigate(["/"]);
+        console.log(result);
+        if (result) {
+          this.router.navigate(['/']);
+        }
       })
       .catch(result => {
-      })
+      });
   }
 
 }

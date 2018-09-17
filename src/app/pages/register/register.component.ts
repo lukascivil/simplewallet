@@ -8,7 +8,7 @@ import { UserService } from '../../shared/providers/user.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class registerComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
@@ -16,36 +16,38 @@ export class registerComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      username: this.formBuilder.control("", [Validators.required, Validators.minLength(8)]),
-      email: this.formBuilder.control("", [Validators.required, Validators.email]),
-      password: this.formBuilder.control("", [Validators.required, Validators.minLength(8)]),
-    })
+      username: this.formBuilder.control('', [Validators.required, Validators.minLength(8)]),
+      email: this.formBuilder.control('', [Validators.required, Validators.email]),
+      password: this.formBuilder.control('', [Validators.required, Validators.minLength(8)]),
+    });
   }
 
   // Check if the inputs are valid
   isValidInput(name): string {
-    if (this.registerForm.get(name).invalid && this.registerForm.get(name).dirty)
-      return "invalid";
+    if (this.registerForm.get(name).invalid && this.registerForm.get(name).dirty) {
+      return 'invalid';
+    }
   }
 
-  onFormSubmit(): void {
-    let username = this.registerForm.get('username').value;
-    let email = this.registerForm.get('password').value;
-    let password = this.registerForm.get('password').value;
+  FormSubmit(): void {
+    const username = this.registerForm.get('username').value;
+    const email = this.registerForm.get('password').value;
+    const password = this.registerForm.get('password').value;
 
     // Prevent auth
-    if (this.registerForm.invalid)
-      return
+    if (this.registerForm.invalid) {
+      return;
+    }
 
     // Authenticate user
     this.userService.register(username, email, password)
       .then(result => {
-        console.log(result)
-        if (result)
-          this.router.navigate(["/"]);
+        if (result) {
+          this.router.navigate(['/']);
+        }
       })
       .catch(result => {
-      })
+      });
   }
 
 }

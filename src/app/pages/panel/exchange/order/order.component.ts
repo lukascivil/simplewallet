@@ -16,10 +16,10 @@ export class OrderComponent implements OnInit {
   @Input() order: Order;
   @Input() market;
   @Input() user: User;
-  @Output() onSubmitOrderClick = new EventEmitter();
+  @Output() SubmitOrderClick = new EventEmitter();
 
   // Lowest value for an order
-  lowordervalue = 0.01
+  lowordervalue = 0.01;
 
   constructor() { }
 
@@ -32,7 +32,7 @@ export class OrderComponent implements OnInit {
     // Maximum quantity
     let maxquantity;
 
-    if (this.order.type == "buy") {
+    if (this.order.type === 'buy') {
       wantedquantity = this.order.getTotal();
       maxquantity = this.user.money_brl;
     } else {
@@ -41,29 +41,31 @@ export class OrderComponent implements OnInit {
     }
 
     // calculates the percentage of required value and return
-    let ruleofthree = (wantedquantity ? ((wantedquantity * 100) / maxquantity) : 0);
-    return String(wantedquantity > maxquantity ? 101 : ruleofthree) + "%";
+    const ruleofthree = (wantedquantity ? ((wantedquantity * 100) / maxquantity) : 0);
+    return String(wantedquantity > maxquantity ? 101 : ruleofthree) + '%';
   }
 
   // Add class to selected currency and set the currentbase
   onCurrencyClick(what: string, currency: string) {
-    if (what == "first") {
+    if (what === 'first') {
       // Currency current Base
       let base;
 
       // Set firstcurrency name
       this.order.firstcurrency = currency;
 
-      if (currency == "brita") {
-        if (this.order.type == "buy")
+      if (currency === 'brita') {
+        if (this.order.type === 'buy') {
           base = this.market.brita.sell;
-        else
+        } else {
           base = this.market.brita.buy;
-      } else if (currency == "bitcoin") {
-        if (this.order.type == "buy")
+        }
+      } else if (currency === 'bitcoin') {
+        if (this.order.type === 'buy') {
           base = this.market.bitcoin.sell;
-        else
+        } else {
           base = this.market.bitcoin.buy;
+        }
       }
 
       this.order.setCurrentbase(base);
@@ -81,8 +83,8 @@ export class OrderComponent implements OnInit {
     this.order.setTotal(Number(value));
   }
 
-  emitonSubmitOrderClickEvent() {
-    this.onSubmitOrderClick.emit();
+  emitSubmitOrderClickEvent() {
+    this.SubmitOrderClick.emit();
   }
 
 }

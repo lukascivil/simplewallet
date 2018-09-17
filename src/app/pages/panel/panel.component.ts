@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MarketService } from '../../shared/providers/market.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { MarketService } from '../../shared/providers/market.service';
   templateUrl: './panel.component.html',
   styleUrls: ['./panel.component.scss']
 })
-export class PanelComponent implements OnInit {
+export class PanelComponent implements OnInit, OnDestroy {
 
   private _bitcoinSubscription;
   private _britaSubscription;
@@ -15,8 +15,8 @@ export class PanelComponent implements OnInit {
 
   ngOnInit() {
     // Init market Service
-    this._bitcoinSubscription = this.market.getBitcoin().subscribe()
-    this._britaSubscription = this.market.getBrita().subscribe()
+    this._bitcoinSubscription = this.market.getBitcoin().subscribe();
+    this._britaSubscription = this.market.getBrita().subscribe();
   }
 
   // Unsubscribe all subscriptions

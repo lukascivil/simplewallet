@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PreloaderComponent implements OnInit {
 
-  @Input() size = "small"
+  @Input() size = 'small';
 
   constructor() { }
 

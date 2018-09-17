@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable, interval, BehaviorSubject, of } from 'rxjs';
-import { map, switchMap, catchError } from "rxjs/operators";
+import { map, switchMap, catchError } from 'rxjs/operators';
 import { BitcoinServerResponse } from '../models/bitcoinserverresponse.model';
 import { BritaServerResponse } from '../models/britaserverresponse.model';
 
@@ -9,13 +9,13 @@ import { BritaServerResponse } from '../models/britaserverresponse.model';
 export class MarketService {
 
 	// API URL mercadobitcoin.net
-	private API_BITCOIN = "http://www.mercadobitcoin.net/api/BTC/ticker/";
+	private API_BITCOIN = 'http://www.mercadobitcoin.net/api/BTC/ticker/';
 
 	// Defined date for Banco Central do Brasil API query
 	// Ps:. Date chosen Arbitrarily
-	private BRITA_DATE = "'9-14-2018'";
+	private BRITA_DATE = '9-14-2018';
 	// API URL Banco Central do Brasil
-	private API_BRITA = `https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao=${this.BRITA_DATE}&$top=100&$format=json&$select=cotacaoCompra,cotacaoVenda`;
+	private API_BRITA = `https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='${this.BRITA_DATE}'&$top=100&$format=json&$select=cotacaoCompra,cotacaoVenda`;
 
 	// Bitcoin, initialize with BitcoinServerResponse
 	private bitcoinsource = new BehaviorSubject<BitcoinServerResponse>(new BitcoinServerResponse);
@@ -27,7 +27,7 @@ export class MarketService {
 
 	constructor(private http: Http) { }
 
-	//Get object from API_BITCOIN, every 3 seconds
+	// Get object from API_BITCOIN, every 3 seconds
 	getBitcoin(): Observable<any> {
 		return interval(3000).pipe(
 			switchMap(() => this.http.get(this.API_BITCOIN)
@@ -36,10 +36,10 @@ export class MarketService {
 					catchError(error => of(`${error}`))
 				)
 			)
-		)
+		);
 	}
 
-	//Get object from API_BRITA, every 3 seconds
+	// Get object from API_BRITA, every 3 seconds
 	getBrita(): Observable<any> {
 		return interval(3000).pipe(
 			switchMap(() => this.http.get(this.API_BRITA)
@@ -48,7 +48,7 @@ export class MarketService {
 					catchError(error => of(`${error}`))
 				)
 			)
-		)
+		);
 	}
 
 }
