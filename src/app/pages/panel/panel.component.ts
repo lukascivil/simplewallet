@@ -8,12 +8,21 @@ import { MarketService } from '../../shared/providers/market.service';
 })
 export class PanelComponent implements OnInit {
 
+  private _bitcoinSubscription;
+  private _britaSubscription;
+
   constructor(private market: MarketService) { }
 
   ngOnInit() {
     // Init market Service
-    this.market.getBitcoin().subscribe()
-    this.market.getBrita().subscribe()
+    this._bitcoinSubscription = this.market.getBitcoin().subscribe()
+    this._britaSubscription = this.market.getBrita().subscribe()
+  }
+
+  // Unsubscribe all subscriptions
+  ngOnDestroy() {
+    this._bitcoinSubscription.unsubscribe();
+    this._britaSubscription.unsubscribe();
   }
 
 }
