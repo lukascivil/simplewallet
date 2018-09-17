@@ -9,7 +9,7 @@ import { User } from '../../../models/user.model';
 })
 export class SidenavComponent implements OnInit {
 
-  @Input() market: Market
+  @Input() market: Market;
   @Input() user: User;
   @Input() dropdown;
 

@@ -9,8 +9,8 @@ import { ModalService } from './modal.service';
 })
 export class ModalComponent implements OnInit {
 
-  header: string = "..."
-  content: string = "..."
+  header = '...';
+  content = '...';
   instance: any;
   @ViewChild('dynamicmodal') dynamicmodal: ElementRef;
 
@@ -19,7 +19,7 @@ export class ModalComponent implements OnInit {
       this.header = data.header;
       this.content = data.content;
       this.open();
-    })
+    });
   }
 
   ngOnInit() {

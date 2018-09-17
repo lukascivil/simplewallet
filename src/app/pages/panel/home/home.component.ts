@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, OnDestroy } from '@angular/core';
 import { MarketService } from '../../../shared/providers/market.service';
 import { Title } from '@angular/platform-browser';
 import { UserService } from '../../../shared/providers/user.service';
@@ -10,7 +10,7 @@ import { User } from '../../../shared/models/user.model';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Bitcoin in BRL
   bitcoinbrl: number = undefined;
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   britabrl: number = undefined;
 
   // Total in BRL
-  totalbrl: number = 0;
+  totalbrl = 0;
 
   // User data
   user: User;
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
   constructor(private market: MarketService, public title: Title, private userService: UserService) {
     this.ischartrendered = false;
     // Set the page title
-    title.setTitle("Dashboard");
+    title.setTitle('Dashboard');
   }
 
   ngOnInit() {
@@ -77,26 +77,27 @@ export class HomeComponent implements OnInit {
   // Calculates the total value of currencies in brl
   calculateTotalMoney() {
     // Only calculates if the value of the coins is set
-    if (this.user.money_brl != undefined && this.bitcoinbrl != undefined && this.britabrl != undefined) {
+    if (this.user.money_brl !== undefined && this.bitcoinbrl !== undefined && this.britabrl !== undefined) {
       this.totalbrl = this.bitcoinbrl + this.britabrl + this.user.money_brl;
       // If the chart is already loaded update it
-      if (this.ischartrendered)
+      if (this.ischartrendered) {
         this.updateChart([this.user.money_brl, this.bitcoinbrl, this.britabrl]);
+      }
     }
   }
 
   renderChart() {
-    var canvas = <HTMLCanvasElement>document.getElementById("canvas");
-    var ctx = canvas.getContext("2d");
+    const canvas = <HTMLCanvasElement>document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
 
     // Pie chart Object
     this.chart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: ["Real", "Bitcoin", "Brita"],
+        labels: ['Real', 'Bitcoin', 'Brita'],
         datasets: [{
-          label: "Population (millions)",
-          backgroundColor: ["#009b3a", "#ffba15", "#9c27b0"],
+          label: 'Population (millions)',
+          backgroundColor: ['#009b3a', '#ffba15', '#9c27b0'],
           data: [0, 0, 0]
         }]
       },
@@ -119,8 +120,9 @@ export class HomeComponent implements OnInit {
 
   // For each currency the value is updated in the chart
   updateChart(values: Array<number>) {
-    for (let key in values)
+    for (const key in values) {
       this.chart.data.datasets[0].data[key] = values[key];
+    }
     this.chart.update();
   }
 

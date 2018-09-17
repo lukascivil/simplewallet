@@ -3,14 +3,14 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { ROUTES } from "./app.routes";
+import { ROUTES } from './app.routes';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { PanelComponent } from './pages/panel/panel.component';
 import { HomeComponent } from './pages/panel/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from './shared/providers/authentication.service';
-import { registerComponent } from './pages/register/register.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { UserService } from './shared/providers/user.service';
 import { Error404Component } from './pages/error404/error404.component';
 import { MarketService } from './shared/providers/market.service';
@@ -25,7 +25,7 @@ import { PreloaderComponent } from './shared/components/preloader/preloader.comp
 import { HistoryComponent } from './pages/panel/history/history.component';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
-import { CurrencyMaskModule } from "ng2-currency-mask";
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
 import { SidenavComponent } from './shared/components/header/sidenav/sidenav.component';
 import { NavbarComponent } from './shared/components/header/navbar/navbar.component';
@@ -33,13 +33,13 @@ import { NavbarComponent } from './shared/components/header/navbar/navbar.compon
 registerLocaleData(localePt, 'pt-BR');
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
-  align: "left",
+  align: 'left',
   allowNegative: false,
-  decimal: ",",
+  decimal: ',',
   precision: 2,
-  prefix: "R$ ",
-  suffix: "",
-  thousands: "."
+  prefix: 'R$ ',
+  suffix: '',
+  thousands: '.'
 };
 
 @NgModule({
@@ -49,7 +49,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     PanelComponent,
     HomeComponent,
     LoginComponent,
-    registerComponent,
+    RegisterComponent,
     Error404Component,
     ExchangeComponent,
     OrderComponent,

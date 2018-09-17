@@ -18,30 +18,32 @@ export class Order {
 
   setAmount(value: number) {
     this.amount = value;
-    if (this.currentbase != undefined)
+    if (this.currentbase !== undefined) {
       this.total = +(this.amount * this.currentbase).toFixed(2);
+    }
   }
 
   getAmount(): number {
-    return this.amount
+    return this.amount;
   }
 
   setCurrentbase(value: number) {
     this.currentbase = value;
-    if (this.amount != undefined)
+    if (this.amount !== undefined) {
       this.total = +(this.amount * this.currentbase).toFixed(2);
+    }
   }
 
   getCurrentbase(): number {
-    return this.currentbase
+    return this.currentbase;
   }
 
   setTotal(value: number) {
-    this.total = value
+    this.total = value;
     if (this.currentbase) {
       this.amount = +(this.total / this.currentbase).toFixed(8);
     } else {
-      throw "Error on currentbase value";
+      throw new Error('Error on currentbase value');
     }
   }
 

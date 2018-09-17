@@ -12,9 +12,9 @@ export class AuthenticationService {
 
   // Login
   login(username: string, password: string) {
-    var promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       // Check if user exists
-      let user = this.getUser(username, password);
+      const user = this.getUser(username, password);
 
       if (user) {
         this.userService.updateUser(user);
@@ -23,7 +23,6 @@ export class AuthenticationService {
         resolve(false);
       }
     });
-    return promise;
   }
 
   // Logout
@@ -33,17 +32,17 @@ export class AuthenticationService {
 
   // Returns user data if exist
   private getUser(name, password): User {
-    let users_database = localStorage.getItem("users");
-    let users = users_database ? JSON.parse(users_database) : [];
+    const users_database = localStorage.getItem('users');
+    const users = users_database ? JSON.parse(users_database) : [];
     let searchuser: User = null;
 
     // Search on the database if the user exists
     users.forEach(user => {
-      if (user.name == name && user.password == password) {
+      if (user.name === name && user.password === password) {
         searchuser = user;
         return false;
       }
-      return
+      return;
     });
     return searchuser;
   }
