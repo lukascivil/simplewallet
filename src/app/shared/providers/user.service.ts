@@ -13,6 +13,7 @@ export class UserService {
 
 	// Register the new user in the database
 	register(username, email, password) {
+		// Default user attributes
 		let newuser: User = {
 			id: this.hashCode(),
 			name: username,
@@ -24,17 +25,10 @@ export class UserService {
 		};
 
 		var promise = new Promise((resolve, reject) => {
-			// Save new user on users database
-			let users_database = localStorage.getItem("users");
-			let users = users_database ? JSON.parse(users_database) : [];
-			users.push(newuser);
-			localStorage.setItem("users", JSON.stringify(users));
-
-			// Save newuser session/currentuser
-			localStorage.setItem("user", JSON.stringify(newuser));
-
+			this.updateUser(newuser, true);
 			resolve(true);
 		});
+
 		return promise;
 	}
 
@@ -44,23 +38,46 @@ export class UserService {
 	}
 
 	// Update user data
-	updateUser(user: User) {
-		// Get users database
-		let users_database = localStorage.getItem("users");
-		let users = JSON.parse(users_database)
+	// If the user is null remove session
+	// If persist == true, update users database
+	updateUser(user: User, persist: boolean = false) {
+		if (user) {
+			localStorage.setItem("user", JSON.stringify(user));
+			this.usersource.next(user);
+			if (persist)
+				this.updateDatabase(user)
+		} else {
+			localStorage.removeItem("user");
+			this.usersource.next(null);
+		}
+	}
 
-		// Override user data
-		users.forEach((element, index, array) => {
-			if (element.id == user.id)
-				array[index] = user;
-		});
+	// Update users database, if the user does not exist, create it
+	private updateDatabase(user: User) {
+		// Get users database
+		let existid = false;
+		let users_database = localStorage.getItem("users");
+		let users = []
+
+		if (users_database) {
+			users = JSON.parse(users_database)
+			// Override user data
+			users.forEach((element, index, array) => {
+				if (element.id == user.id) {
+					array[index] = user;
+					existid = true;
+					return false;
+				}
+			});
+			// If no user id, create the user
+			if (!existid)
+				users.push(user)
+		} else {
+			users.push(user);
+		}
 
 		// Update users database
 		localStorage.setItem("users", JSON.stringify(users))
-
-		// Update user data
-		localStorage.setItem("user", JSON.stringify(user));
-		this.usersource.next(user);
 	}
 
 	// Generates a unique hash code for the user id
