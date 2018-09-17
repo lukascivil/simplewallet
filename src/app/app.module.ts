@@ -27,6 +27,8 @@ import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
+import { SidenavComponent } from './shared/components/header/sidenav/sidenav.component';
+import { NavbarComponent } from './shared/components/header/navbar/navbar.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -54,7 +56,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     OrdersummaryComponent,
     ModalComponent,
     PreloaderComponent,
-    HistoryComponent
+    HistoryComponent,
+    SidenavComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

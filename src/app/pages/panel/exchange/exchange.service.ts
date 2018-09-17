@@ -57,7 +57,7 @@ export class ExchangeService {
       user.transactions.push(order);
 
       // Update user data
-      this.userService.updateUser(user)
+      this.userService.updateUser(user, true)
       return true;
     }
     return false;

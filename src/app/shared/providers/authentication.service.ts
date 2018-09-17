@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
+import { UserService } from './user.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   // Login
   login(username: string, password: string) {
@@ -15,7 +17,7 @@ export class AuthenticationService {
       let user = this.getUser(username, password);
 
       if (user) {
-        localStorage.setItem("user", JSON.stringify(user));
+        this.userService.updateUser(user);
         resolve(true);
       } else {
         resolve(false);
@@ -26,7 +28,7 @@ export class AuthenticationService {
 
   // Logout
   logout() {
-    localStorage.removeItem("user");
+    this.userService.updateUser(null);
   }
 
   // Returns user data if exist

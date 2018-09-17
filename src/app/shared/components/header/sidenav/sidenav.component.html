@@ -1,0 +1,73 @@
+<ul id="slide-out" class="sidenav sidenav-fixed">
+
+  <li>
+    <!-- Product Logo -->
+    <div class="row valign-wrapper nomarginbotton">
+      <div class="col s12 m12 center-align">
+        <img class="companylogo" src="../../../../assets/logostonegreen.png" alt="">
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Mobile Market -->
+    <div class="row valign-wrapper nomarginbotton center hide-on-med-and-up">
+      <div class="col s12">
+        <a class='dropdown-trigger btn' href='#' data-target='mobilemarketdrompdown'>Market BRL/BTC</a>
+      </div>
+    </div>
+    <div class="row nomarginbotton hide-on-med-and-up">
+      <div class="col s12 center nomarginbotton">
+        <div>
+          <ng-container *ngIf="dropdown == 'BRL/BTC'">
+            <span> Buy {{market.bitcoin?.buy | currency: 'BRL': true}} Sell {{market.bitcoin?.sell | currency: 'BRL':
+              true}}</span>
+          </ng-container>
+          <ng-container *ngIf="dropdown == 'BRL/BTA'">
+            <span> Buy R$ {{market.brita?.buy | number : '1.2-3' }} Sell R$ {{market.brita?.sell | number :
+              '1.2-3'}}</span>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accounting Balance -->
+    <a class="subheader">ACCOUNTING BALANCE</a>
+    <div class="row valign-wrapper nomarginbotton">
+      <div class="col s6 m6 center-align"><i class="fa fa-money fa-2x stronegreen-text" aria-hidden="true"></i></div>
+      <div class="col s6 m6 center-align currencyvalueup">{{user.money_brl | currency: 'BRL': true }}</div>
+    </div>
+    <div class="row valign-wrapper nomarginbotton">
+      <div class="col s6 center-align"><i class="fa fa-btc fa-2x amber-text" aria-hidden="true"></i></div>
+      <div class="col s6 center-align currencyvalueup">{{user.cryptocoins.bitcoin | number : '1.2-8'}}</div>
+    </div>
+    <div class="row valign-wrapper nomarginbotton">
+      <div class="col s6 center-align"><i class="fa fa-eercast fa-2x purple-text" aria-hidden="true"></i></div>
+      <div class="col s6 center-align currencyvalueup">{{user.cryptocoins.brita | number : '1.2-8'}}</div>
+    </div>
+  </li>
+
+  <li>
+    <div class="divider"></div>
+  </li>
+
+  <!-- SideNav Menu  -->
+  <li>
+    <a class="waves-effect waves-green sidenav-close" [routerLink]="['/']"><i class="fa fa-tachometer fa-2x"
+        aria-hidden="true"></i>DashBoard</a>
+  </li>
+  <li>
+    <a class="waves-effect waves-green sidenav-close" [routerLink]="['/exchange']"><i class="fa fa-exchange fa-2x"
+        aria-hidden="true"></i>Buy/Sell</a>
+  </li>
+  <li>
+    <a class="waves-effect waves-green sidenav-close" [routerLink]="['/history']"><i class="fa fa-history fa-2x"
+        aria-hidden="true"></i>History</a>
+  </li>
+
+  <li class="hide-on-med-and-up">
+    <a class="waves-effect waves-green sidenav-close" [routerLink]="['/login']"><i class="fa fa-sign-out fa-2x"
+        aria-hidden="true"></i>Exit</a>
+  </li>
+
+</ul>

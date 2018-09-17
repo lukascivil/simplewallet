@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   // Chart Object
   chart;
   // Chart State
-  ischartrendered;
+  ischartrendered: boolean;
 
   // Substriptions
   private _userSubscription;
