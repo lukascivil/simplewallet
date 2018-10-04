@@ -20,8 +20,8 @@
       <div class="col s12 center nomarginbotton">
         <div>
           <ng-container *ngIf="dropdown == 'BRL/BTC'">
-            <span> Buy {{market.bitcoin?.buy | currency: 'BRL': true}} Sell {{market.bitcoin?.sell | currency: 'BRL':
-              true}}</span>
+            <span> Buy {{market.bitcoin?.buy | currency: 'BRL': 'symbol'}} Sell {{market.bitcoin?.sell |
+              currency: 'BRL': 'symbol'}}</span>
           </ng-container>
           <ng-container *ngIf="dropdown == 'BRL/BTA'">
             <span> Buy R$ {{market.brita?.buy | number : '1.2-3' }} Sell R$ {{market.brita?.sell | number :
@@ -35,7 +35,7 @@
     <a class="subheader">ACCOUNTING BALANCE</a>
     <div class="row valign-wrapper nomarginbotton">
       <div class="col s6 m6 center-align"><i class="fa fa-money fa-2x stronegreen-text" aria-hidden="true"></i></div>
-      <div class="col s6 m6 center-align currencyvalueup">{{user.money_brl | currency: 'BRL': true }}</div>
+      <div class="col s6 m6 center-align currencyvalueup">{{user.money_brl | currency: 'BRL': 'symbol' }}</div>
     </div>
     <div class="row valign-wrapper nomarginbotton">
       <div class="col s6 center-align"><i class="fa fa-btc fa-2x amber-text" aria-hidden="true"></i></div>

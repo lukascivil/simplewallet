@@ -8,8 +8,8 @@
         <a class="dropdown-trigger" data-target="marketdropdown">
           <ng-container *ngIf="dropdown == 'BRL/BTC'">
             <span class="top"> Market BRL/BTC</span>
-            <span> Buy {{market.bitcoin?.buy | currency: 'BRL': true}} Sell {{market.bitcoin?.sell | currency: 'BRL':
-              true}}</span>
+            <span> Buy {{market.bitcoin?.buy | currency: 'BRL': 'symbol'}} Sell {{market.bitcoin?.sell |
+              currency: 'BRL': 'symbol'}}</span>
           </ng-container>
           <ng-container *ngIf="dropdown == 'BRL/BTA'">
             <span class="top"> Market BRL/BTA</span>

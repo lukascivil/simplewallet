@@ -38,7 +38,7 @@
     <div class="section">
       <div class="row valign-wrapper">
         <div class="col s6 m6 currencyvalueup">Currency Base</div>
-        <div class="col s6 m6 right-align currencyvalueup"> {{order.getCurrentbase() | currency: 'BRL': true}}</div>
+        <div class="col s6 m6 right-align currencyvalueup"> {{order.getCurrentbase() | currency: 'BRL': 'symbol'}}</div>
       </div>
       <div class="row valign-wrapper">
         <div class="col s6 m6 currencyvalueup">Amount</div>
@@ -51,7 +51,7 @@
           Total
         </div>
         <div class="col s6 m6 right-align currencyvalueup">
-          {{order.getTotal() | currency: 'BRL': true}}
+          {{order.getTotal() | currency: 'BRL': 'symbol'}}
         </div>
       </div>
     </div>

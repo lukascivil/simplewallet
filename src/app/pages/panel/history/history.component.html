@@ -34,9 +34,9 @@
             </ng-container>
           </td>
           <td class="currencyvalueup">{{transaction.type | titlecase}}</td>
-          <td class="currencyvalueup">{{transaction.total | currency: 'BRL': true}}</td>
+          <td class="currencyvalueup">{{transaction.total | currency: 'BRL': 'symbol'}}</td>
           <td class="currencyvalueup">{{transaction.amount}}</td>
-          <td class="currencyvalueup">{{transaction.currentbase | currency: 'BRL': true}}</td>
+          <td class="currencyvalueup">{{transaction.currentbase | currency: 'BRL': 'symbol'}}</td>
           <td class="currencyvalueup">{{transaction.date | date : "dd/MM/yyyy"}}</td>
         </tr>
       </tbody>
